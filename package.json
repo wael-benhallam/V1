@@ -1,0 +1,13 @@
+{
+  "name": "bistouri-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site vitrine statique : automatisation IA pour cabinets, établissements et PME.",
+  "scripts": {
+    "build": "tailwindcss -i ./src/tailwind.css -o ./tailwind.css --minify",
+    "dev": "tailwindcss -i ./src/tailwind.css -o ./tailwind.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.1.11"
+  }
+}

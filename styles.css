@@ -259,3 +259,6 @@ body:has(dialog[open]) { overflow: hidden; }
 @media (max-width: 520px) { .prose-legal dl { grid-template-columns: 1fr; gap: 0; } .prose-legal dd { margin-bottom: 8px; } }
 .prose-legal a { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); }
 .prose-legal a:hover { text-decoration-color: var(--ink); }
+
+/* ── Page Radar ─────────────────────────────────────────── */
+@media (min-width: 1024px) { .offers.offers-2 { grid-template-columns: repeat(2, 1fr); } }

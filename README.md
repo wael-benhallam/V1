@@ -1,17 +1,19 @@
 # bistouri.app
 
-Site vitrine statique : automatisation IA pour cabinets, établissements et PME.
+Site vitrine statique : Radar des marchés publics arrivant à échéance (DECP).
 
 ## Fichiers
 
 | Fichier | Rôle |
 |---|---|
-| `index.html` | Page unique (SEO, OpenGraph, données structurées) |
+| `index.html` | Page unique du Radar (promesse, échantillon, offres Stripe, mentions légales) |
+| `radar.js` | Interactions de la page Radar : menu mobile, mentions légales |
+| `echantillon_gratuit_radar.xlsx` | Échantillon gratuit de 50 marchés, servi à la racine |
 | `config.js` | **Toutes les valeurs modifiables** : marque, email, Cal.com, newsletter Buttondown, mentions légales |
 | `styles.css` | Styles du site |
 | `tailwind.css` | CSS Tailwind compilé et minifié (généré, ne pas éditer) |
 | `src/tailwind.css` | Source Tailwind (thème + fichiers analysés) |
-| `app.js` | Interactions : modales, réservation par pack, newsletter, menu mobile |
+| `app.js`, `config.js` | Ancienne page de prestations IA, plus chargée par `index.html` |
 
 ## Compiler le CSS
 

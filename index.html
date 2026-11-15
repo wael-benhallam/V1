@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <script>document.documentElement.classList.replace('no-js','js');</script>
 
-  <title>Wael Benhallam — Systèmes IA sur mesure pour cabinets & PME</title>
-  <meta name="description" content="Récupérez 5 à 10 heures par semaine : tri d’emails, synthèse documentaire, génération de devis et assistants internes. Systèmes IA livrés clé en main, au forfait, en 5 à 10 jours.">
-  <meta name="author" content="Wael Benhallam">
+  <title>Radar des marchés publics à échéance — Bistouri</title>
+  <meta name="description" content="Repérez les marchés publics qui arrivent à échéance 4 à 10 mois avant leur remise en concurrence : acheteur, titulaire en place, montant et date, à partir des données officielles DECP nettoyées. Échantillon gratuit de 50 marchés.">
+  <meta name="author" content="Waël Benhallam">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#FAFAFA">
   <link rel="canonical" href="https://bistouri.app/">
@@ -15,20 +15,14 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
-  <meta property="og:site_name" content="Wael Benhallam">
-  <meta property="og:title" content="Récupérez 5 à 10 heures par semaine grâce à des systèmes IA sur mesure">
-  <meta property="og:description" content="Automatisations IA packagées pour cabinets, établissements et PME. Forfait fixe, livraison en 5 à 10 jours, 100 % de propriété.">
+  <meta property="og:site_name" content="Bistouri">
+  <meta property="og:title" content="Radar des marchés publics arrivant à échéance">
+  <meta property="og:description" content="Anticipez les appels d’offres publics 4 à 10 mois avant leur republication, grâce aux données officielles DECP nettoyées.">
   <meta property="og:url" content="https://bistouri.app/">
-  <meta property="og:image" content="https://bistouri.app/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Wael Benhallam — Systèmes IA sur mesure">
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Récupérez 5 à 10 heures par semaine grâce à l’IA">
-  <meta name="twitter:description" content="Tri d’emails, assistants documentaires, devis automatiques. Livrés clé en main, au forfait.">
-  <meta name="twitter:image" content="https://bistouri.app/og-image.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Radar des marchés publics arrivant à échéance">
+  <meta name="twitter:description" content="Acheteur, titulaire en place, montant et date d’échéance. Échantillon gratuit de 50 marchés.">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
@@ -45,17 +39,14 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Wael Benhallam — Automatisation IA",
-    "description": "Conception et déploiement de systèmes d’automatisation IA pour cabinets, établissements et PME.",
+    "@type": "Product",
+    "name": "Radar des marchés publics arrivant à échéance",
+    "description": "Fichier des marchés publics dont l’échéance est estimée dans 4 à 10 mois, établi à partir des données essentielles de la commande publique (DECP).",
+    "brand": { "@type": "Brand", "name": "Bistouri" },
     "url": "https://bistouri.app/",
-    "areaServed": "FR",
-    "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
-    "priceRange": "490 € – 1 190 €",
-    "makesOffer": [
-      { "@type": "Offer", "name": "Assistant IA Métier", "price": "490", "priceCurrency": "EUR" },
-      { "@type": "Offer", "name": "Pipeline d’Automatisation", "price": "890", "priceCurrency": "EUR" },
-      { "@type": "Offer", "name": "Atelier & Déploiement", "price": "1190", "priceCurrency": "EUR" }
+    "offers": [
+      { "@type": "Offer", "name": "1 secteur, 1 région", "price": "190", "priceCurrency": "EUR", "url": "https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" },
+      { "@type": "Offer", "name": "1 secteur, France entière", "price": "490", "priceCurrency": "EUR", "url": "https://buy.stripe.com/aFadR92u22fSef9bFj5AQ01" }
     ]
   }
   </script>
@@ -69,17 +60,17 @@
     <div class="wrap flex h-16 items-center justify-between">
       <a href="#top" class="wordmark" aria-label="Retour en haut de page">
         <span class="wordmark-dot" aria-hidden="true"></span>
-        <span data-cfg-text="brand.name">Wael Benhallam</span>
+        <span>Bistouri · Radar</span>
       </a>
 
       <nav class="hidden items-center gap-9 md:flex" aria-label="Navigation principale">
-        <a href="#etudes-de-cas" class="nav-link">Études de cas</a>
+        <a href="#contenu-fichier" class="nav-link">Le fichier</a>
         <a href="#offres" class="nav-link">Offres</a>
         <a href="#methode" class="nav-link">Méthode</a>
       </nav>
 
       <div class="flex items-center gap-2">
-        <a href="#reserver" data-cfg-href="cal" class="btn btn-dark btn-sm">Diagnostic 15 min</a>
+        <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-dark btn-sm">Échantillon gratuit</a>
         <button type="button" id="menu-toggle" class="menu-toggle md:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
           <svg class="icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
           <svg class="icon-close hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -89,10 +80,10 @@
 
     <nav id="mobile-menu" class="mobile-menu md:hidden" aria-label="Navigation mobile" hidden>
       <div class="wrap flex flex-col pb-6">
-        <a href="#etudes-de-cas" class="mobile-link">Études de cas</a>
+        <a href="#contenu-fichier" class="mobile-link">Le fichier</a>
         <a href="#offres" class="mobile-link">Offres</a>
         <a href="#methode" class="mobile-link">Méthode</a>
-        <a href="#reserver" data-cfg-href="cal" class="btn btn-dark mt-5 w-full justify-center">Réserver un diagnostic gratuit</a>
+        <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-dark mt-5 w-full justify-center">Télécharger l’échantillon gratuit</a>
       </div>
     </nav>
   </header>
@@ -105,98 +96,69 @@
         <div class="lg:col-span-7">
           <p class="availability">
             <span class="availability-mark" aria-hidden="true"></span>
-            Disponible pour 2 déploiements ce mois-ci
+            Radar des marchés publics · données DECP de novembre 2026
           </p>
 
-          <h1 class="display mt-8">Récupérez 5 à 10&nbsp;heures par semaine grâce à des systèmes IA sur mesure.</h1>
+          <h1 class="display mt-8">Repérez les marchés publics à renouveler 4 à 10&nbsp;mois avant l’appel d’offres.</h1>
 
           <p class="lede mt-7">
-            J’automatise les tâches répétitives des cabinets, établissements et PME : tri d’emails, synthèse documentaire, génération de devis et assistants internes. Livrés clé en main, sans jargon ni abonnement superflu.
+            Chaque marché public attribué a une date de fin. Le Radar liste ceux qui arrivent à échéance dans votre secteur et votre région, avec l’acheteur, le titulaire en place, le montant et la date estimée, à partir des données officielles de la commande publique (DECP) nettoyées.
           </p>
 
           <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-7">
-            <a href="#reserver" data-cfg-href="cal" class="btn btn-dark btn-lg justify-center">Réserver un diagnostic gratuit&nbsp;(15&nbsp;min)</a>
-            <a href="#etudes-de-cas" class="text-link">Explorer les cas d’usage ↓</a>
+            <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-dark btn-lg justify-center">Télécharger l’échantillon gratuit&nbsp;(50&nbsp;marchés)</a>
+            <a href="#offres" class="text-link">Voir les deux offres ↓</a>
           </div>
+          <p class="fine-print">Fichier Excel, 50 marchés réels de 42 k€ à 2,9 M€. Téléchargement direct, sans inscription.</p>
         </div>
 
         <aside class="fact-sheet lg:col-span-5 lg:col-start-8" aria-label="En bref">
           <p class="fact-sheet-head">
             <span>En bref</span>
-            <span class="fact-sheet-ref">Prestations 2026</span>
+            <span class="fact-sheet-ref">Novembre 2026</span>
           </p>
           <dl>
-            <div class="fact"><dt>Délai moyen</dt><dd>5 à 10 jours ouvrés</dd></div>
-            <div class="fact"><dt>Tarification</dt><dd>Forfait fixe, zéro surprise</dd></div>
-            <div class="fact"><dt>Propriété</dt><dd>100 % de vos outils &amp; scripts</dd></div>
-            <div class="fact"><dt>Votre temps</dt><dd>45 min au total</dd></div>
+            <div class="fact"><dt>Marchés suivis</dt><dd>10 905 à échéance dans 4 à 10 mois</dd></div>
+            <div class="fact"><dt>Secteurs</dt><dd>Services aux entreprises, maintenance, propreté et déchets</dd></div>
+            <div class="fact"><dt>Source</dt><dd>DECP, data.gouv.fr (Licence Ouverte 2.0)</dd></div>
+            <div class="fact"><dt>Format</dt><dd>Excel et CSV, paiement unique</dd></div>
           </dl>
-          <p class="fact-sheet-foot">Un seul interlocuteur, de l’appel de cadrage à la livraison.</p>
+          <p class="fact-sheet-foot">Les échéances sont estimées : date de notification + durée déclarée du marché.</p>
         </aside>
       </div>
     </section>
 
-    <!-- ═════════════ ÉTUDES DE CAS ═════════════ -->
-    <section id="etudes-de-cas" class="section">
+    <!-- ═════════════ CONTENU DU FICHIER ═════════════ -->
+    <section id="contenu-fichier" class="section">
       <div class="wrap">
         <div class="section-head">
-          <p class="section-label">Le laboratoire<span>Newsletter hebdomadaire</span></p>
+          <p class="section-label">Le fichier<span>Une ligne par marché</span></p>
           <div>
-            <h2 class="h2">Un système concret décortiqué chaque semaine.</h2>
-            <p class="section-intro">Pour chaque cas : le problème de départ, l’architecture technique, le déroulé du workflow et le gain mesuré. Sélectionnez une ligne pour lire l’étude complète.</p>
+            <h2 class="h2">Qui achète, qui tient le marché, et quand il se termine.</h2>
+            <p class="section-intro">Le fichier se lit et se filtre dans Excel. Chaque ligne décrit un marché dont la fin est estimée dans 4 à 10 mois, le délai utile pour prendre contact avec l’acheteur avant la nouvelle consultation.</p>
           </div>
         </div>
 
-        <div class="case-index" role="list">
-          <div class="case-index-head" aria-hidden="true">
-            <span>N°</span><span>Domaine</span><span>Système</span><span>Stack</span><span class="text-right">Gain</span>
-          </div>
-
-          <button type="button" class="case-row" data-case="01" aria-haspopup="dialog" role="listitem">
-            <span class="cr-num">01</span>
-            <span class="cr-cat">Admin</span>
-            <span class="cr-title">Automatiser le tri et les brouillons de réponse de 250 emails entrants</span>
-            <span class="cr-stack">Gmail / Outlook · Python · API LLM</span>
-            <span class="cr-gain">-4h30 / sem.</span>
-          </button>
-
-          <button type="button" class="case-row" data-case="02" aria-haspopup="dialog" role="listitem">
-            <span class="cr-num">02</span>
-            <span class="cr-cat">Savoir</span>
-            <span class="cr-title">Transformer 500 pages de procédures PDF en assistant interne fiable</span>
-            <span class="cr-stack">Base documentaire · Recherche vectorielle</span>
-            <span class="cr-gain">-3h00 / sem.</span>
-          </button>
-
-          <button type="button" class="case-row" data-case="03" aria-haspopup="dialog" role="listitem">
-            <span class="cr-num">03</span>
-            <span class="cr-cat">Opérations</span>
-            <span class="cr-title">Générer des devis, comptes-rendus et fiches structurées sans saisie</span>
-            <span class="cr-stack">Notion / Sheets · Make · Génération PDF</span>
-            <span class="cr-gain">-6h00 / sem.</span>
-          </button>
-        </div>
-
-        <!-- Newsletter -->
-        <div class="newsletter">
-          <div>
-            <h3 class="newsletter-title">Recevez la prochaine étude chaque mardi.</h3>
-            <p class="newsletter-text">Un cas réel, son architecture et ses chiffres, en cinq minutes de lecture. Désinscription en un clic.</p>
-          </div>
-
-          <form id="newsletter-form" class="w-full" novalidate>
-            <label for="nl-email" class="sr-only">Adresse email professionnelle</label>
-            <div class="nl-field">
-              <input id="nl-email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="vous@entreprise.fr" class="nl-input">
-              <button type="submit" class="nl-btn" id="nl-submit">
-                <span class="nl-spinner" aria-hidden="true"></span>
-                <span class="nl-label">Rejoindre</span>
-              </button>
-            </div>
-            <input type="text" name="website" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
-            <p id="nl-feedback" class="nl-feedback" role="status" aria-live="polite">Vos données restent privées et ne sont jamais revendues.</p>
-          </form>
-        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num">01</span>
+            <h3 class="step-title">Le marché</h3>
+            <p class="step-time">Objet, montant, échéance</p>
+            <p class="step-text">Acheteur public et sa commune, objet, code CPV, montant attribué HT, procédure, date de notification, durée et échéance estimée, avec un indice de fiabilité.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">02</span>
+            <h3 class="step-title">Le titulaire en place</h3>
+            <p class="step-time">Nom, SIRET, taille</p>
+            <p class="step-text">L’entreprise qui détient aujourd’hui le marché, son SIRET, sa catégorie (PME, ETI, grande entreprise) et sa commune.</p>
+          </li>
+          <li class="step">
+            <span class="step-num">03</span>
+            <h3 class="step-title">Les concurrents locaux</h3>
+            <p class="step-time">Sur 4 ans, même département</p>
+            <p class="step-text">Les trois entreprises qui ont gagné le plus de marchés du même type dans le département, pour savoir face à qui vous répondrez.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -204,58 +166,45 @@
     <section id="offres" class="section">
       <div class="wrap">
         <div class="section-head">
-          <p class="section-label">Offres<span>Forfait fixe, devis sous 24 h</span></p>
+          <p class="section-label">Offres<span>Paiement unique, sans abonnement</span></p>
           <div>
-            <h2 class="h2">Trois formats clairs pour déployer l’IA sans mobiliser vos équipes.</h2>
+            <h2 class="h2">Deux formats, selon votre zone de chalandise.</h2>
+            <p class="section-intro">Trois secteurs au choix : services aux entreprises (sécurité, intérim, conseil, communication), réparation et maintenance, propreté, déchets et assainissement.</p>
           </div>
         </div>
 
-        <div class="offers">
+        <div class="offers offers-2">
           <article class="offer">
-            <p class="offer-kicker">Pack 01</p>
-            <h3 class="offer-title">Assistant IA Métier</h3>
-            <p class="offer-price">490 €</p>
-            <p class="offer-delay">Livré en 5 jours</p>
+            <p class="offer-kicker">Régional</p>
+            <h3 class="offer-title">1 secteur, 1 région</h3>
+            <p class="offer-price">190 €</p>
+            <p class="offer-delay">Paiement unique</p>
             <ul class="offer-list">
-              <li>Assistant configuré sur vos règles et documents</li>
-              <li>10 prompts métiers calibrés</li>
-              <li>Fiche d’utilisation (1 page)</li>
-              <li>Session de prise en main de 30 min</li>
+              <li>Tous les marchés du secteur à échéance dans 4 à 10 mois dans la région choisie</li>
+              <li>Acheteur, titulaire en place, montant, échéance estimée</li>
+              <li>Trois concurrents locaux par marché</li>
+              <li>Fichiers Excel et CSV</li>
             </ul>
-            <button type="button" class="btn btn-line w-full justify-center" data-pack="pack-01">Choisir ce pack</button>
+            <a href="https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" class="btn btn-line w-full justify-center" rel="noopener">Acheter pour 190 €</a>
           </article>
 
           <article class="offer offer-featured">
-            <p class="offer-flag">Le plus demandé</p>
-            <p class="offer-kicker">Pack 02</p>
-            <h3 class="offer-title">Pipeline d’Automatisation</h3>
-            <p class="offer-price">890 €</p>
-            <p class="offer-delay">7 à 10 jours</p>
+            <p class="offer-flag">Couverture nationale</p>
+            <p class="offer-kicker">National</p>
+            <h3 class="offer-title">1 secteur, France entière</h3>
+            <p class="offer-price">490 €</p>
+            <p class="offer-delay">Paiement unique</p>
             <ul class="offer-list">
-              <li>Connexion complète de vos outils (Python, Make ou n8n)</li>
-              <li>Sécurisation des données et gestion des erreurs</li>
-              <li>Documentation complète</li>
-              <li>30 jours de suivi inclus</li>
+              <li>Tous les marchés du secteur à échéance dans 4 à 10 mois, toutes régions</li>
+              <li>3 100 à 4 400 marchés selon le secteur</li>
+              <li>Acheteur, titulaire en place, montant, échéance estimée, concurrents locaux</li>
+              <li>Fichiers Excel et CSV</li>
             </ul>
-            <button type="button" class="btn btn-dark w-full justify-center" data-pack="pack-02">Choisir ce pack</button>
-          </article>
-
-          <article class="offer">
-            <p class="offer-kicker">Pack 03</p>
-            <h3 class="offer-title">Atelier &amp; Déploiement</h3>
-            <p class="offer-price">1 190 €</p>
-            <p class="offer-delay">Demi-journée</p>
-            <ul class="offer-list">
-              <li>Audit préalable des processus internes</li>
-              <li>Atelier pratique sur vos vrais cas d’usage, jusqu’à 12 personnes</li>
-              <li>2 outils internes déployés</li>
-              <li>Support écrit remis à chaque participant</li>
-            </ul>
-            <button type="button" class="btn btn-line w-full justify-center" data-pack="pack-03">Choisir ce pack</button>
+            <a href="https://buy.stripe.com/aFadR92u22fSef9bFj5AQ01" class="btn btn-dark w-full justify-center" rel="noopener">Acheter pour 490 €</a>
           </article>
         </div>
 
-        <p class="fine-print" data-cfg-text="legal.vat">TVA non applicable, art. 293 B du CGI</p>
+        <p class="fine-print">Paiement sécurisé par Stripe. Après le paiement, indiquez le secteur et la région souhaités à <a href="mailto:wael.benhallam@gmail.com?subject=Radar%20%E2%80%94%20secteur%20et%20r%C3%A9gion" class="underline">wael.benhallam@gmail.com</a> : le fichier vous est envoyé par e-mail sous 24 h ouvrées. TVA non applicable, art. 293 B du CGI.</p>
       </div>
     </section>
 
@@ -263,58 +212,45 @@
     <section id="methode" class="section">
       <div class="wrap">
         <div class="section-head">
-          <p class="section-label">Méthode<span>Trois étapes, 45 min de votre temps</span></p>
+          <p class="section-label">Méthode<span>Ce que le fichier dit, et ne dit pas</span></p>
           <div>
-            <h2 class="h2">Conçu pour ne vous demander que 45 minutes au total.</h2>
+            <h2 class="h2">Des données officielles, nettoyées et datées.</h2>
           </div>
         </div>
 
         <ol class="steps">
           <li class="step">
             <span class="step-num">01</span>
-            <h3 class="step-title">Appel de cadrage</h3>
-            <p class="step-time">15 min de votre temps</p>
-            <p class="step-text">On identifie la tâche la plus chronophage, on estime le gain et je vous propose le pack adapté. Devis ferme sous 24 h.</p>
+            <h3 class="step-title">Source publique</h3>
+            <p class="step-time">DECP, data.gouv.fr</p>
+            <p class="step-text">Les acheteurs publics déclarent les données essentielles de leurs marchés. Nous partons de la base consolidée publiée sur data.gouv.fr : 1,9 million de marchés.</p>
           </li>
           <li class="step">
             <span class="step-num">02</span>
-            <h3 class="step-title">Construction &amp; tests</h3>
-            <p class="step-time">5 à 10 jours, sans vous</p>
-            <p class="step-text">Je construis, je teste sur vos données réelles (anonymisées si besoin) et je documente chaque brique. Point d’avancement écrit à mi-parcours.</p>
+            <h3 class="step-title">Nettoyage</h3>
+            <p class="step-time">1,74 million de marchés retenus</p>
+            <p class="step-text">Montants fictifs ou aberrants, durées incohérentes, titulaires absents et codes CPV invalides sont écartés avant tout calcul.</p>
           </li>
           <li class="step">
             <span class="step-num">03</span>
-            <h3 class="step-title">Livraison clé en main</h3>
-            <p class="step-time">30 min de votre temps</p>
-            <p class="step-text">Démonstration, transfert des accès et de la documentation. Les outils et les scripts vous appartiennent entièrement.</p>
+            <h3 class="step-title">Échéance estimée</h3>
+            <p class="step-time">Notification + durée</p>
+            <p class="step-text">L’échéance est une estimation, pas une date contractuelle : reconductions et avenants peuvent la décaler. Pour un accord-cadre, le montant indiqué est souvent un plafond.</p>
           </li>
         </ol>
-
-        <div class="profile">
-          <div class="profile-id">
-            <span class="monogram" aria-hidden="true">WB</span>
-            <div>
-              <p class="profile-name" data-cfg-text="brand.name">Wael Benhallam</p>
-              <p class="profile-role">Physique · Médecine · Formation IA</p>
-            </div>
-          </div>
-          <blockquote class="profile-quote">
-            <p>Étudiant d’excellence avec un double parcours en physique et en médecine. Plusieurs années d’expérience dans la formation à l’utilisation de l’intelligence artificielle, plusieurs conférences données dans des lycées parisiens, à destination d’équipes pédagogiques.</p>
-          </blockquote>
-        </div>
       </div>
     </section>
 
     <!-- ═════════════ CTA FINAL ═════════════ -->
-    <section id="reserver" class="closing">
+    <section id="echantillon" class="closing">
       <div class="wrap grid gap-10 lg:grid-cols-12">
         <div class="lg:col-span-8">
-          <p class="closing-label">Diagnostic gratuit, sans engagement</p>
-          <h2 class="closing-title">Identifions votre premier gain de temps en 15&nbsp;minutes.</h2>
+          <p class="closing-label">Échantillon gratuit, sans inscription</p>
+          <h2 class="closing-title">Jugez sur pièces : 50&nbsp;vrais marchés à échéance.</h2>
         </div>
         <div class="flex flex-col justify-end gap-3 lg:col-span-4">
-          <a href="#reserver" data-cfg-href="cal" class="btn btn-light btn-lg justify-center">Choisir un créneau sur l’agenda →</a>
-          <a href="#reserver" data-cfg-href="mailto" class="btn btn-outline-light btn-lg justify-center">Écrire par email</a>
+          <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-light btn-lg justify-center">Télécharger l’échantillon (Excel) →</a>
+          <a href="#offres" class="btn btn-outline-light btn-lg justify-center">Voir les offres</a>
         </div>
       </div>
     </section>
@@ -322,53 +258,18 @@
 
   <!-- ═════════════ FOOTER ═════════════ -->
   <footer class="footer">
-    <div class="wrap flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between">
-      <p>© <span id="year">2026</span> <span data-cfg-text="brand.name">Wael Benhallam</span>. Micro-entreprise (Entrepreneur Individuel), <span data-cfg-text="brand.city">Paris</span>.</p>
+    <div class="wrap flex flex-col gap-4 py-8 md:flex-row md:items-start md:justify-between">
+      <p>
+        © <span id="year">2026</span> Bistouri — Waël Benhallam, entrepreneur individuel (micro-entreprise), Paris.<br>
+        SIREN 935 246 801 · SIRET 935 246 801 00010 · TVA non applicable, art. 293 B du CGI.<br>
+        Hébergement : Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.
+      </p>
       <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
-        <a href="#reserver" data-cfg-href="mailto" data-cfg-text="contact.email">wael.benhallam@gmail.com</a>
+        <a href="mailto:wael.benhallam@gmail.com">wael.benhallam@gmail.com</a>
         <button type="button" id="open-legal" aria-haspopup="dialog">Mentions légales</button>
       </div>
     </div>
   </footer>
-
-  <!-- ═════════════ MODALE : ÉTUDE DE CAS ═════════════ -->
-  <dialog id="case-modal" class="modal" aria-labelledby="case-modal-title">
-    <div class="modal-panel modal-panel-lg">
-      <div class="modal-head">
-        <span class="modal-kicker" id="case-modal-badge"></span>
-        <button type="button" class="modal-close" data-close aria-label="Fermer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
-      </div>
-      <div class="modal-body" id="case-modal-body"></div>
-    </div>
-  </dialog>
-
-  <!-- ═════════════ MODALE : RÉSERVATION PACK ═════════════ -->
-  <dialog id="booking-modal" class="modal" aria-labelledby="booking-title">
-    <div class="modal-panel">
-      <div class="modal-head">
-        <span class="modal-kicker">Réservation</span>
-        <button type="button" class="modal-close" data-close aria-label="Fermer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h2 id="booking-title" class="modal-title">Réserver votre créneau</h2>
-        <p class="mt-3 text-[15px] leading-relaxed text-mute">Le pack sélectionné est transmis avec votre réservation. Le premier échange de 15 min reste gratuit et sans engagement.</p>
-
-        <fieldset class="pack-options" id="pack-options">
-          <legend class="sr-only">Choix du pack</legend>
-        </fieldset>
-
-        <div class="mt-7 flex flex-col gap-2 sm:flex-row">
-          <a id="booking-cal" href="#reserver" target="_blank" rel="noopener" class="btn btn-dark justify-center sm:flex-1">Ouvrir l’agenda Cal.com →</a>
-          <a id="booking-mail" href="#reserver" class="btn btn-line justify-center">Par email</a>
-        </div>
-        <p class="mt-3 text-[12.5px] text-mute">L’agenda s’ouvre dans un nouvel onglet.</p>
-      </div>
-    </div>
-  </dialog>
 
   <!-- ═════════════ MODALE : MENTIONS LÉGALES ═════════════ -->
   <dialog id="legal-modal" class="modal" aria-labelledby="legal-title">
@@ -381,11 +282,42 @@
       </div>
       <div class="modal-body prose-legal" id="legal-body">
         <h2 id="legal-title">Mentions légales</h2>
+
+        <h3>Éditeur du site</h3>
+        <dl>
+          <dt>Nom</dt><dd>Bistouri — Waël Benhallam</dd>
+          <dt>Statut</dt><dd>Entrepreneur individuel (micro-entreprise)</dd>
+          <dt>Adresse</dt><dd>Paris, France</dd>
+          <dt>SIREN</dt><dd class="font-mono">935 246 801</dd>
+          <dt>SIRET</dt><dd class="font-mono">935 246 801 00010</dd>
+          <dt>TVA</dt><dd>TVA non applicable, art. 293 B du CGI</dd>
+          <dt>Contact</dt><dd><a href="mailto:wael.benhallam@gmail.com">wael.benhallam@gmail.com</a></dd>
+          <dt>Directeur de la publication</dt><dd>Waël Benhallam</dd>
+        </dl>
+
+        <h3>Hébergement</h3>
+        <dl>
+          <dt>Hébergeur</dt><dd>Vercel Inc.</dd>
+          <dt>Adresse</dt><dd>440 N Barranca Ave #4133, Covina, CA 91723, États-Unis</dd>
+          <dt>Site</dt><dd><a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a></dd>
+        </dl>
+
+        <h3>Origine des données</h3>
+        <p>Le Radar est établi à partir des données essentielles de la commande publique (DECP) publiées sur data.gouv.fr sous Licence Ouverte 2.0, dans leur version consolidée de novembre 2026. Les données ont été filtrées et enrichies d’une échéance estimée ; elles ne sont pas garanties exhaustives ni exemptes d’erreurs de déclaration.</p>
+
+        <h3>Vente</h3>
+        <p>Les fichiers sont vendus à des professionnels, en paiement unique traité par Stripe, et livrés par e-mail sous 24 h ouvrées après indication du secteur et de la région souhaités. Les échéances sont des estimations et ne constituent pas un engagement sur la date ni sur la tenue d’une nouvelle consultation.</p>
+
+        <h3>Données personnelles (RGPD)</h3>
+        <p>Ce site ne collecte aucune donnée par formulaire. Les informations transmises lors d’un achat (via Stripe) ou d’un échange par e-mail servent uniquement à livrer le fichier et à répondre à votre demande. Elles ne sont jamais revendues.</p>
+        <p>Si vous avez reçu un e-mail de notre part, votre adresse professionnelle générique a été relevée sur le site public de votre entreprise. Vous pouvez vous y opposer à tout moment en répondant STOP à cet e-mail, ou en écrivant à <a href="mailto:wael.benhallam@gmail.com">wael.benhallam@gmail.com</a>. Vous disposez d’un droit d’accès, de rectification, d’effacement et d’opposition, et pouvez introduire une réclamation auprès de la CNIL.</p>
+
+        <h3>Cookies</h3>
+        <p>Ce site n’utilise aucun cookie publicitaire ni outil de mesure d’audience. Les polices sont chargées depuis Google Fonts.</p>
       </div>
     </div>
   </dialog>
 
-  <script src="config.js"></script>
-  <script src="app.js" defer></script>
+  <script src="radar.js" defer></script>
 </body>
 </html>

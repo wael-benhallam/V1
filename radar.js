@@ -45,11 +45,31 @@
     if (location.hash === "#mentions-legales") open();
   }
 
+  // Visite venue d'un e-mail (lien …?v=<numéro>) : un signal anonyme par session, sans cookie,
+  // et le numéro de variante suit jusqu'au paiement Stripe pour savoir quelle version a vendu.
+  function setupVariante() {
+    const v = new URLSearchParams(location.search).get("v");
+    if (!v || !/^[1-9]\d{0,2}$/.test(v)) return;
+    try {
+      if (!sessionStorage.getItem("radar-v")) {
+        sessionStorage.setItem("radar-v", v);
+        if (navigator.sendBeacon) navigator.sendBeacon("/api/c?v=" + v);
+        else fetch("/api/c?v=" + v, { method: "POST", keepalive: true }).catch(() => {});
+      }
+    } catch (e) { /* stockage indisponible : on ne compte pas */ }
+    $$('a[href^="https://buy.stripe.com/"]').forEach((a) => {
+      const u = new URL(a.href);
+      u.searchParams.set("client_reference_id", "v" + v);
+      a.href = u.toString();
+    });
+  }
+
   function init() {
     const y = $("#year");
     if (y) y.textContent = String(Math.max(2026, new Date().getFullYear()));
     setupNav();
     setupLegal();
+    setupVariante();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);

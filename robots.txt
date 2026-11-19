@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /merci
 
-Sitemap: https://bistouri.app/sitemap.xml
+Sitemap: https://www.bistouri.app/sitemap.xml

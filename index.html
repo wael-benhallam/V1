@@ -33,7 +33,7 @@
 
   <!-- Tailwind CSS compilé (npm run build) + styles du site -->
   <link rel="stylesheet" href="tailwind.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
 
   <!-- Données structurées -->
   <script type="application/ld+json">
@@ -128,6 +128,31 @@
       </div>
     </section>
 
+    <!-- ═════════════ APERÇU PERSONNALISÉ (lien ?f=&r= des e-mails) ═════════════ -->
+    <section id="votre-apercu" class="section apercu" hidden>
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-label">Votre aperçu<span id="ap-zone"></span></p>
+          <div>
+            <h2 class="h2" id="ap-titre"></h2>
+            <p class="section-intro" id="ap-intro"></p>
+          </div>
+        </div>
+        <div class="ap-table" role="region" aria-labelledby="ap-titre" tabindex="0">
+          <table>
+            <thead><tr><th scope="col">Échéance estimée</th><th scope="col">Acheteur</th><th scope="col">Objet</th><th scope="col" class="num">Montant HT</th><th scope="col">Titulaire en place</th></tr></thead>
+            <tbody id="ap-lignes"></tbody>
+          </table>
+        </div>
+        <p class="ap-plus" id="ap-plus"></p>
+        <div class="ap-cta">
+          <a id="ap-acheter" href="https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" class="btn btn-dark btn-lg" rel="noopener"></a>
+          <a href="/echantillon_gratuit_radar.xlsx" download class="text-link">Ou l’échantillon gratuit de 50 marchés (Excel)</a>
+        </div>
+        <p class="fine-print">Fichier envoyé par e-mail après le paiement, sans autre démarche. Une question avant d’acheter ? Répondez simplement à notre e-mail.</p>
+      </div>
+    </section>
+
     <!-- ═════════════ CONTENU DU FICHIER ═════════════ -->
     <section id="contenu-fichier" class="section">
       <div class="wrap">
@@ -204,7 +229,7 @@
           </article>
         </div>
 
-        <p class="fine-print">Paiement sécurisé par Stripe. Après le paiement, indiquez le secteur et la région souhaités à <a href="mailto:wael.benhallam@gmail.com?subject=Radar%20%E2%80%94%20secteur%20et%20r%C3%A9gion" class="underline">wael.benhallam@gmail.com</a> : le fichier vous est envoyé par e-mail sous 24 h ouvrées. TVA non applicable, art. 293 B du CGI.</p>
+        <p class="fine-print">Paiement sécurisé par Stripe. Après le paiement, si le secteur et la région ne vous ont pas été demandés, indiquez-les à <a href="mailto:wael.benhallam@gmail.com?subject=Radar%20%E2%80%94%20secteur%20et%20r%C3%A9gion" class="underline">wael.benhallam@gmail.com</a> : le fichier vous est envoyé par e-mail sous 24 h ouvrées. TVA non applicable, art. 293 B du CGI.</p>
       </div>
     </section>
 
@@ -318,6 +343,6 @@
     </div>
   </dialog>
 
-  <script src="radar.js" defer></script>
+  <script src="radar.js?v=2" defer></script>
 </body>
 </html>

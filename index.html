@@ -33,7 +33,7 @@
 
   <!-- Tailwind CSS compilé (npm run build) + styles du site -->
   <link rel="stylesheet" href="tailwind.css">
-  <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="stylesheet" href="styles.css?v=3">
 
   <!-- Données structurées -->
   <script type="application/ld+json">
@@ -67,6 +67,7 @@
         <a href="#contenu-fichier" class="nav-link">Le fichier</a>
         <a href="#offres" class="nav-link">Offres</a>
         <a href="#methode" class="nav-link">Méthode</a>
+        <a href="#questions" class="nav-link">Questions</a>
       </nav>
 
       <div class="flex items-center gap-2">
@@ -83,6 +84,7 @@
         <a href="#contenu-fichier" class="mobile-link">Le fichier</a>
         <a href="#offres" class="mobile-link">Offres</a>
         <a href="#methode" class="mobile-link">Méthode</a>
+        <a href="#questions" class="mobile-link">Questions</a>
         <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-dark mt-5 w-full justify-center">Télécharger l’échantillon gratuit</a>
       </div>
     </nav>
@@ -107,7 +109,7 @@
 
           <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-7">
             <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-dark btn-lg justify-center">Télécharger l’échantillon gratuit&nbsp;(50&nbsp;marchés)</a>
-            <a href="#offres" class="text-link">Voir les deux offres ↓</a>
+            <a href="#votre-apercu" class="text-link">Voir les marchés de votre région ↓</a>
           </div>
           <p class="fine-print">Fichier Excel, 50 marchés réels de 42 k€ à 2,9 M€. Téléchargement direct, sans inscription.</p>
         </div>
@@ -129,12 +131,24 @@
     </section>
 
     <!-- ═════════════ APERÇU PERSONNALISÉ (lien ?f=&r= des e-mails) ═════════════ -->
-    <section id="votre-apercu" class="section apercu" hidden>
+    <section id="votre-apercu" class="section apercu">
       <div class="wrap">
         <div class="section-head">
-          <p class="section-label">Votre aperçu<span id="ap-zone"></span></p>
+          <p class="section-label">Vos marchés<span id="ap-zone">Choisissez votre secteur et votre région</span></p>
           <div>
-            <h2 class="h2" id="ap-titre"></h2>
+            <form class="ap-choix" id="ap-choix" aria-label="Choisir un secteur et une région">
+              <label><span>Secteur</span>
+                <select id="ap-f">
+                  <option value="79">Services aux entreprises (sécurité, intérim, conseil, communication)</option>
+                  <option value="50">Réparation et maintenance</option>
+                  <option value="90">Propreté, déchets, assainissement</option>
+                </select>
+              </label>
+              <label><span>Région</span>
+                <select id="ap-r"><option value="ile-de-france">Île-de-France</option></select>
+              </label>
+            </form>
+            <h2 class="h2" id="ap-titre">Les marchés de votre secteur qui se renouvellent près de chez vous.</h2>
             <p class="section-intro" id="ap-intro"></p>
           </div>
         </div>
@@ -149,7 +163,8 @@
           <a id="ap-acheter" href="https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" class="btn btn-dark btn-lg" rel="noopener"></a>
           <a href="/echantillon_gratuit_radar.xlsx" download class="text-link">Ou l’échantillon gratuit de 50 marchés (Excel)</a>
         </div>
-        <p class="fine-print">Fichier envoyé par e-mail après le paiement, sans autre démarche. Une question avant d’acheter ? Répondez simplement à notre e-mail.</p>
+        <p class="ap-garantie"><strong>Satisfait ou remboursé pendant 14 jours.</strong> Si le fichier ne vous sert pas, un e-mail suffit : vous êtes remboursé intégralement, sans justification.</p>
+        <p class="fine-print">Fichier envoyé par e-mail après le paiement, sans autre démarche. Une question avant d’acheter ? Répondez simplement à notre e-mail ou écrivez à <a href="mailto:wael.benhallam@gmail.com" class="underline">wael.benhallam@gmail.com</a>.</p>
       </div>
     </section>
 
@@ -229,7 +244,12 @@
           </article>
         </div>
 
-        <p class="fine-print">Paiement sécurisé par Stripe. Après le paiement, si le secteur et la région ne vous ont pas été demandés, indiquez-les à <a href="mailto:wael.benhallam@gmail.com?subject=Radar%20%E2%80%94%20secteur%20et%20r%C3%A9gion" class="underline">wael.benhallam@gmail.com</a> : le fichier vous est envoyé par e-mail sous 24 h ouvrées. TVA non applicable, art. 293 B du CGI.</p>
+        <div class="roi">
+          <p><strong>Un seul marché gagné rembourse le fichier des centaines de fois.</strong> Le montant médian des marchés du Radar est de 167 000 à 200 000 € HT selon le secteur, pour un fichier à 190 €.</p>
+          <p><strong>Satisfait ou remboursé pendant 14 jours</strong>, sur simple e-mail, sans justification.</p>
+        </div>
+
+        <p class="fine-print">Paiement sécurisé par Stripe. Choisissez votre secteur et votre région <a href="#votre-apercu" class="underline">dans l’aperçu</a> avant de payer : le bon fichier vous est envoyé automatiquement. Sinon, indiquez-les à <a href="mailto:wael.benhallam@gmail.com?subject=Radar%20%E2%80%94%20secteur%20et%20r%C3%A9gion" class="underline">wael.benhallam@gmail.com</a> : le fichier vous est envoyé par e-mail sous 24 h ouvrées. TVA non applicable, art. 293 B du CGI.</p>
       </div>
     </section>
 
@@ -263,6 +283,44 @@
             <p class="step-text">L’échéance est une estimation, pas une date contractuelle : reconductions et avenants peuvent la décaler. Pour un accord-cadre, le montant indiqué est souvent un plafond.</p>
           </li>
         </ol>
+      </div>
+    </section>
+
+    <!-- ═════════════ QUESTIONS ═════════════ -->
+    <section id="questions" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="section-label">Questions<span>Avant d’acheter</span></p>
+          <div>
+            <h2 class="h2">Ce qu’on nous demande le plus.</h2>
+          </div>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Les appels d’offres sont déjà publics sur le BOAMP. Qu’apporte le Radar ?</summary>
+            <p>Le BOAMP et les plateformes de veille publient l’appel d’offres le jour où il sort : il reste alors 30 à 45 jours pour répondre, et le cahier des charges est déjà écrit. Le Radar vous signale le marché 4 à 10 mois avant, quand l’acheteur prépare encore son besoin. C’est le moment où une rencontre ou une demande d’information compte.</p>
+          </details>
+          <details>
+            <summary>J’ai déjà un abonnement de veille. Est-ce la même chose ?</summary>
+            <p>Non, et les deux se complètent. Une veille vous alerte sur les consultations publiées. Le Radar part des marchés déjà attribués et calcule leur date de fin : il annonce les consultations à venir, avec le nom du titulaire en place que vous aurez en face.</p>
+          </details>
+          <details>
+            <summary>Quelle est la fiabilité de la date d’échéance ?</summary>
+            <p>C’est une estimation : date de notification plus durée déclarée par l’acheteur. Chaque ligne porte un indice de fiabilité. Les reconductions et avenants peuvent décaler la date ; c’est pourquoi le fichier couvre une fenêtre de 4 à 10 mois plutôt qu’une date au jour près.</p>
+          </details>
+          <details>
+            <summary>Comment est-ce que je reçois le fichier ?</summary>
+            <p>Par e-mail, en Excel et CSV, après le paiement. Si vous avez choisi votre secteur et votre région dans l’aperçu, l’envoi est automatique ; sinon, il suffit de répondre au reçu Stripe en les indiquant.</p>
+          </details>
+          <details>
+            <summary>Et si le fichier ne me sert pas ?</summary>
+            <p>Vous êtes remboursé intégralement pendant 14 jours, sur simple e-mail à <a href="mailto:wael.benhallam@gmail.com" class="underline">wael.benhallam@gmail.com</a>, sans justification.</p>
+          </details>
+          <details>
+            <summary>Faut-il un abonnement ?</summary>
+            <p>Non. Paiement unique, facture fournie. Les données sont celles de novembre 2026 ; vous pourrez racheter une édition plus récente si vous le souhaitez, rien n’est reconduit automatiquement.</p>
+          </details>
+        </div>
       </div>
     </section>
 
@@ -331,7 +389,7 @@
         <p>Le Radar est établi à partir des données essentielles de la commande publique (DECP) publiées sur data.gouv.fr sous Licence Ouverte 2.0, dans leur version consolidée de novembre 2026. Les données ont été filtrées et enrichies d’une échéance estimée ; elles ne sont pas garanties exhaustives ni exemptes d’erreurs de déclaration.</p>
 
         <h3>Vente</h3>
-        <p>Les fichiers sont vendus à des professionnels, en paiement unique traité par Stripe, et livrés par e-mail sous 24 h ouvrées après indication du secteur et de la région souhaités. Les échéances sont des estimations et ne constituent pas un engagement sur la date ni sur la tenue d’une nouvelle consultation.</p>
+        <p>Les fichiers sont vendus à des professionnels, en paiement unique traité par Stripe, et livrés par e-mail après le paiement (sous 24 h ouvrées au plus si le secteur et la région restent à préciser). Garantie satisfait ou remboursé : tout achat est remboursé intégralement sur simple demande par e-mail dans les 14 jours qui suivent le paiement. Les échéances sont des estimations et ne constituent pas un engagement sur la date ni sur la tenue d’une nouvelle consultation.</p>
 
         <h3>Données personnelles (RGPD)</h3>
         <p>Ce site ne collecte aucune donnée par formulaire. Les informations transmises lors d’un achat (via Stripe) ou d’un échange par e-mail servent uniquement à livrer le fichier et à répondre à votre demande. Elles ne sont jamais revendues.</p>
@@ -343,6 +401,6 @@
     </div>
   </dialog>
 
-  <script src="radar.js?v=2" defer></script>
+  <script src="radar.js?v=3" defer></script>
 </body>
 </html>

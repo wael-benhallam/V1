@@ -277,3 +277,20 @@ body:has(dialog[open]) { overflow: hidden; }
 .ap-plus { margin-top: 16px; font-size: 15px; color: var(--mute); }
 .ap-cta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
 .ap-cta .btn { white-space: normal; height: auto; min-height: 52px; padding-block: 12px; }
+
+/* ── Sélecteur secteur × région, garantie, rentabilité, FAQ ── */
+.ap-choix { display: grid; gap: 12px; margin-bottom: 24px; }
+@media (min-width: 640px) { .ap-choix { grid-template-columns: 1.4fr 1fr; } }
+.ap-choix label { display: grid; gap: 6px; }
+.ap-choix span { font-size: 12.5px; font-weight: 500; color: var(--mute); }
+.ap-choix select { width: 100%; min-width: 0; height: 46px; padding: 0 12px; font: inherit; font-size: 15px; color: var(--ink); background: var(--card); border: 1px solid var(--line-2); border-radius: var(--r-control); }
+.ap-choix select:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.ap-garantie { margin-top: 20px; padding: 14px 18px; font-size: 14.5px; color: var(--ink-2); background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: var(--r-box); max-width: 44rem; }
+.roi { margin-top: 28px; display: grid; gap: 10px; padding: 20px 24px; background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: var(--r-box); font-size: 15px; color: var(--ink-2); }
+.faq { display: grid; border-top: 1px solid var(--line); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { cursor: pointer; list-style: none; padding: 18px 32px 18px 0; position: relative; font-size: 16.5px; font-weight: 500; letter-spacing: -0.01em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 16px; font-size: 20px; color: var(--soft); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { padding: 0 0 20px; max-width: 44rem; color: var(--mute); line-height: 1.65; }

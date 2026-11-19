@@ -50,6 +50,7 @@
   // Le lien porte aussi f=<famille> et r=<région> : la page montre alors l'aperçu du prospect, et
   // client_reference_id = v<variante>_<famille>_<région> permet de livrer le bon fichier sans rien demander.
   const STRIPE_FRANCE = "aFadR92u22fSef9bFj5AQ01";
+  const STRIPE_REGION = "cNi28r0lU07K8UPgZD5AQ00";
 
   function lireLien() {
     const q = new URLSearchParams(location.search);
@@ -84,20 +85,33 @@
   const mois = (iso) => { const [y, m] = iso.split("-"); return MOIS[+m - 1] + " " + y; };
   const cell = (txt, cls) => { const td = document.createElement("td"); td.textContent = txt; if (cls) td.className = cls; return td; };
 
-  async function setupApercu(l) {
-    if (!l.f || !l.r) return;
+  // Aperçu secteur × région : choisi par le visiteur, ou pré-rempli par le lien des e-mails (?f=&r=).
+  const ap = { index: null, l: null };
+
+  function majAchats(f, r) {
+    const parts = ["v" + (ap.l.v || "0"), f];
+    $$('a[href^="https://buy.stripe.com/"]').forEach((a) => {
+      const u = new URL(a.href);
+      const france = a.href.includes(STRIPE_FRANCE);
+      u.searchParams.set("client_reference_id", parts.concat(france ? "france" : r).join("_"));
+      a.href = u.toString();
+    });
+  }
+
+  async function afficher(f, r) {
     let d;
     try {
-      const res = await fetch("/apercu/" + l.f + "_" + l.r + ".json");
+      const res = await fetch("/apercu/" + f + "_" + r + ".json");
       if (!res.ok) return;
       d = await res.json();
     } catch (e) { return; }
     const enZone = d.zone === "France entière" ? "en France" : "en " + d.zone;
-    $("#ap-zone").textContent = d.zone;
+    $("#ap-zone").textContent = d.libelle + " · " + d.zone;
     $("#ap-titre").textContent = nf.format(d.marches) + " marchés publics (" + d.libelle.toLowerCase() + ") à renouveler " + enZone + ".";
     $("#ap-intro").textContent = "Leur fin est estimée dans 4 à 10 mois, pour " + nf.format(Math.round(d.montant_total_meur)) +
       " M€ attribués au total. Voici les plus proches. Le fichier complet donne aussi le titulaire en place, son SIRET et trois concurrents locaux pour chaque marché.";
     const tb = $("#ap-lignes");
+    tb.replaceChildren();
     d.lignes.forEach((x) => {
       const tr = document.createElement("tr");
       tr.append(cell(mois(x.echeance), "date"), cell(x.acheteur), cell(x.objet),
@@ -107,20 +121,50 @@
     const reste = d.marches - d.lignes.length;
     $("#ap-plus").textContent = reste > 0 ? "+ " + nf.format(reste) + " autres marchés dans le fichier." : "";
     const achat = $("#ap-acheter");
-    if (d.zone === "France entière") {
-      achat.href = "https://buy.stripe.com/" + STRIPE_FRANCE;
-      achat.textContent = "Recevoir le fichier France entière · 490 €";
-    } else {
-      achat.textContent = "Recevoir le fichier " + d.zone + " · 190 €";
+    achat.href = "https://buy.stripe.com/" + (d.zone === "France entière" ? STRIPE_FRANCE : STRIPE_REGION);
+    achat.textContent = d.zone === "France entière" ? "Recevoir le fichier France entière · 490 €"
+      : "Recevoir le fichier " + d.zone + " · 190 €";
+    majAchats(f, r);
+  }
+
+  function remplirRegions(f, r) {
+    const sel = $("#ap-r");
+    const regions = Object.keys(ap.index).filter((k) => k.startsWith(f + "_"))
+      .map((k) => ({ r: k.slice(3), zone: ap.index[k].zone, n: ap.index[k].marches }))
+      .sort((a, b) => (a.r === "france") - (b.r === "france") || a.zone.localeCompare(b.zone, "fr"));
+    sel.replaceChildren(...regions.map((x) => {
+      const o = document.createElement("option");
+      o.value = x.r;
+      o.textContent = x.zone + " (" + nf.format(x.n) + " marchés)";
+      return o;
+    }));
+    sel.value = regions.some((x) => x.r === r) ? r : (regions.some((x) => x.r === "ile-de-france") ? "ile-de-france" : regions[0].r);
+    return sel.value;
+  }
+
+  async function setupApercu(l) {
+    ap.l = l;
+    try {
+      const res = await fetch("/apercu/index.json");
+      if (!res.ok) throw 0;
+      ap.index = await res.json();
+    } catch (e) { $("#votre-apercu").hidden = true; return; }
+    const fSel = $("#ap-f");
+    let f = l.f && ap.index[l.f + "_france"] ? l.f : "79";
+    fSel.value = f;
+    let r = remplirRegions(f, l.r);
+    fSel.addEventListener("change", () => { f = fSel.value; r = remplirRegions(f, r); afficher(f, r); });
+    $("#ap-r").addEventListener("change", (e) => { r = e.target.value; afficher(f, r); });
+    await afficher(f, r);
+    if (l.f && l.r) {
+      const enZone = r === "france" ? "en France" : "en " + ap.index[f + "_" + r].zone;
+      const heroLien = $('.hero a[href="#votre-apercu"]');
+      if (heroLien) { heroLien.href = "#votre-apercu"; heroLien.textContent = "Voir vos marchés " + enZone + " ↓"; }
+      // le prospect voit d'abord ses propres marchés, avant la présentation générale
+      const sec = $("#votre-apercu");
+      $("main").prepend(sec);
+      sec.classList.add("apercu-en-tete");
     }
-    marquerPaiements(l);
-    const heroLien = $('.hero a[href="#offres"]');
-    if (heroLien) { heroLien.href = "#votre-apercu"; heroLien.textContent = "Voir vos marchés " + enZone + " ↓"; }
-    // le prospect voit d'abord ses propres marchés, avant la présentation générale
-    const sec = $("#votre-apercu");
-    $("main").prepend(sec);
-    sec.classList.add("apercu-en-tete");
-    sec.hidden = false;
   }
 
   function init() {
@@ -130,7 +174,6 @@
     setupLegal();
     const l = lireLien();
     setupVariante(l);
-    marquerPaiements(l);
     setupApercu(l);
   }
 

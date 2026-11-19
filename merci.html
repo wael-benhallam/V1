@@ -5,36 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Commande confirmée | Bistouri Radar</title>
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#FAFAFA">
+  <meta name="theme-color" content="#F5F1E8">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tailwind.css">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
-<body class="bg-paper text-ink font-sans antialiased">
+<body>
+  <div class="dateline">
+    <div class="wrap dateline-in"><span>Confirmation de commande</span><span>Paiement traité par Stripe</span></div>
+  </div>
   <header class="site-header">
-    <div class="wrap flex h-16 items-center justify-between">
-      <a href="/" class="wordmark"><span class="wordmark-dot" aria-hidden="true"></span><span>Bistouri · Radar</span></a>
+    <div class="wrap masthead">
+      <a href="/" class="wordmark" aria-label="Bistouri Radar, retour au site">
+        <span class="wm-cut" aria-hidden="true"></span>
+        <span class="wm-name">Bistouri</span>
+        <span class="wm-sub">Radar des marchés publics</span>
+      </a>
     </div>
   </header>
 
   <main class="merci">
     <div class="wrap merci-box">
-      <p class="availability"><span class="availability-mark" aria-hidden="true"></span>Paiement reçu</p>
-      <h1 class="h2 mt-6">Merci, votre commande est confirmée.</h1>
-      <p class="section-intro" id="merci-fichier">Votre fichier Radar (Excel et CSV) part automatiquement par e-mail, à l’adresse saisie lors du paiement.</p>
+      <p class="kicker">Paiement reçu <span class="cut" aria-hidden="true"></span> Livraison automatique</p>
+      <h1 class="display">Merci, votre commande est <em>confirmée.</em></h1>
+      <p class="lede" id="merci-fichier">Votre fichier Radar (Excel et CSV) part automatiquement par e-mail, à l’adresse saisie lors du paiement.</p>
 
       <ol class="merci-steps">
         <li><strong>Reçu Stripe :</strong> envoyé tout de suite par e-mail.</li>
         <li><strong>Votre fichier :</strong> envoyé depuis radar@bistouri-radar.fr, en général dans les 2 heures. Pensez à vérifier vos courriers indésirables.</li>
-        <li><strong>Rien reçu sous 24 h ?</strong> Écrivez à <a href="mailto:radar@bistouri-radar.fr?subject=Radar%20%E2%80%94%20fichier%20non%20re%C3%A7u" class="underline">radar@bistouri-radar.fr</a> : nous vous l’envoyons immédiatement.</li>
+        <li><strong>Rien reçu sous 24 h ?</strong> Écrivez à <a href="mailto:radar@bistouri-radar.fr?subject=Radar%20%E2%80%94%20fichier%20non%20re%C3%A7u" class="u">radar@bistouri-radar.fr</a> : nous vous l’envoyons immédiatement.</li>
         <li><strong>14 jours satisfait ou remboursé</strong>, sur simple e-mail, sans justification.</li>
       </ol>
 
       <div class="cta-row">
-        <a href="/" class="btn btn-line btn-lg justify-center">Retour au site</a>
+        <a href="/" class="btn btn-line btn-lg">Retour au site</a>
       </div>
     </div>
   </main>

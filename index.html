@@ -9,7 +9,7 @@
   <meta name="description" content="Fichier Excel des marchés publics dont la fin est estimée dans 4 à 10 mois : acheteur, titulaire actuel, montant HT. Données officielles DECP. Aperçu gratuit de votre secteur et de votre région.">
   <meta name="author" content="Waël Benhallam">
   <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="theme-color" content="#FAFAFA">
+  <meta name="theme-color" content="#F5F1E8">
   <link rel="canonical" href="https://www.bistouri.app/">
 
   <!-- Open Graph -->
@@ -31,14 +31,13 @@
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-  <!-- Fonts -->
+  <!-- Fonts : Newsreader (titres), IBM Plex Sans (texte), IBM Plex Mono (données) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS compilé (npm run build) + styles du site -->
   <link rel="stylesheet" href="tailwind.css">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=6">
 
   <!-- Données structurées -->
   <script type="application/ld+json">
@@ -69,18 +68,27 @@
   </script>
 </head>
 
-<body class="bg-paper text-ink font-sans antialiased">
+<body>
   <a href="#contenu" class="skip-link">Aller au contenu</a>
 
-  <!-- ═════════════ HEADER ═════════════ -->
-  <header id="top" class="site-header sticky top-0 z-40">
-    <div class="wrap flex h-16 items-center justify-between">
-      <a href="#top" class="wordmark" aria-label="Retour en haut de page">
-        <span class="wordmark-dot" aria-hidden="true"></span>
-        <span>Bistouri · Radar</span>
+  <!-- ═════════════ EN-TÊTE ═════════════ -->
+  <div class="dateline">
+    <div class="wrap dateline-in">
+      <span>Édition du 15.11.2026</span>
+      <span class="dateline-mid">Source : DECP · data.gouv.fr</span>
+      <span>10 905 marchés suivis</span>
+    </div>
+  </div>
+
+  <header id="top" class="site-header">
+    <div class="wrap masthead">
+      <a href="#top" class="wordmark" aria-label="Bistouri Radar, retour en haut de page">
+        <span class="wm-cut" aria-hidden="true"></span>
+        <span class="wm-name">Bistouri</span>
+        <span class="wm-sub">Radar des marchés publics</span>
       </a>
 
-      <nav class="hidden items-center gap-9 md:flex" aria-label="Navigation principale">
+      <nav class="nav" aria-label="Navigation principale">
         <a href="#exemple" class="nav-link">Exemple</a>
         <a href="#votre-apercu" class="nav-link">Aperçu gratuit</a>
         <a href="#offres" class="nav-link">Tarifs</a>
@@ -88,186 +96,201 @@
         <a href="#questions" class="nav-link">Questions</a>
       </nav>
 
-      <div class="flex items-center gap-2">
+      <div class="masthead-actions">
         <a href="#offres" class="btn btn-buy btn-sm">Acheter le fichier</a>
-        <button type="button" id="menu-toggle" class="menu-toggle md:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
-          <svg class="icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
-          <svg class="icon-close hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        <button type="button" id="menu-toggle" class="menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
+          <svg class="icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 8h18M3 16h18"/></svg>
+          <svg class="icon-close hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
       </div>
     </div>
 
-    <nav id="mobile-menu" class="mobile-menu md:hidden" aria-label="Navigation mobile" hidden>
-      <div class="wrap flex flex-col pb-6">
-        <a href="#exemple" class="mobile-link">Exemple</a>
-        <a href="#votre-apercu" class="mobile-link">Aperçu gratuit</a>
-        <a href="#offres" class="mobile-link">Tarifs</a>
-        <a href="#methode" class="mobile-link">Méthode</a>
-        <a href="#questions" class="mobile-link">Questions</a>
-        <a href="#votre-apercu" class="btn btn-buy mt-5 w-full justify-center">Découvrir les marchés disponibles</a>
+    <nav id="mobile-menu" class="mobile-menu" aria-label="Navigation mobile" hidden>
+      <div class="wrap">
+        <a href="#exemple" class="mobile-link"><span>01</span>Exemple</a>
+        <a href="#votre-apercu" class="mobile-link"><span>02</span>Aperçu gratuit</a>
+        <a href="#offres" class="mobile-link"><span>03</span>Tarifs</a>
+        <a href="#methode" class="mobile-link"><span>04</span>Méthode</a>
+        <a href="#questions" class="mobile-link"><span>05</span>Questions</a>
+        <a href="#votre-apercu" class="btn btn-buy btn-block">Découvrir les marchés disponibles</a>
       </div>
     </nav>
   </header>
 
   <main id="contenu">
 
-    <!-- ═════════════ HERO ═════════════ -->
+    <!-- ═════════════ OUVERTURE ═════════════ -->
     <section class="hero">
-      <div class="wrap grid gap-12 lg:grid-cols-12 lg:gap-10">
-        <div class="lg:col-span-7">
-          <p class="availability">
-            <span class="availability-mark" aria-hidden="true"></span>
-            Données publiques DECP · actualisées le 15&nbsp;novembre&nbsp;2026
-          </p>
+      <div class="wrap hero-grid">
+        <div class="hero-main">
+          <p class="kicker">Intelligence commerciale <span class="cut" aria-hidden="true"></span> Marchés publics</p>
 
-          <h1 class="display mt-8">Identifiez les marchés publics arrivant à échéance avant vos concurrents.</h1>
+          <h1 class="display">Identifiez les marchés publics arrivant à échéance <em>avant vos concurrents.</em></h1>
 
-          <p class="lede mt-7">
+          <p class="lede">
             Repérez les contrats dont la fin est estimée dans les 4 à 10 prochains mois. Identifiez les acheteurs publics, les titulaires actuels et les opportunités de prospection dans votre secteur.
           </p>
 
-          <ul class="hero-points" aria-label="Ce que contient le fichier">
-            <li>Acheteur public</li>
-            <li>Titulaire actuel</li>
-            <li>Montant HT</li>
-            <li>Échéance estimée</li>
-          </ul>
+          <p class="fields" aria-label="Ce que contient le fichier">
+            <span>Acheteur public</span><span>Titulaire actuel</span><span>Montant HT</span><span>Échéance estimée</span>
+          </p>
 
           <div class="hero-cta">
-            <a href="#votre-apercu" class="btn btn-buy btn-lg justify-center">Découvrir les marchés disponibles</a>
-            <a href="#exemple" class="btn btn-line btn-lg justify-center">Voir un exemple gratuit</a>
+            <a href="#votre-apercu" class="btn btn-buy btn-lg">Découvrir les marchés disponibles <span aria-hidden="true">→</span></a>
+            <a href="#exemple" class="btn btn-line btn-lg">Voir un exemple gratuit</a>
           </div>
-          <p class="reassure">Paiement unique <span aria-hidden="true">·</span> 14 jours satisfait ou remboursé <span aria-hidden="true">·</span> Excel et CSV</p>
+          <p class="reassure">Paiement unique <i aria-hidden="true">/</i> 14 jours satisfait ou remboursé <i aria-hidden="true">/</i> Excel et CSV</p>
         </div>
 
-        <aside class="fact-sheet lg:col-span-5 lg:col-start-8" aria-label="En bref">
-          <p class="fact-sheet-head">
-            <span>En bref</span>
-            <span class="fact-sheet-ref">Mise à jour 15/11/2026</span>
-          </p>
-          <dl>
-            <div class="fact"><dt>Marchés repérés</dt><dd>10 905 dont la fin est estimée dans 4 à 10 mois</dd></div>
-            <div class="fact"><dt>Secteurs</dt><dd>Services aux entreprises, maintenance, propreté et déchets</dd></div>
-            <div class="fact"><dt>Source</dt><dd>DECP, data.gouv.fr (données publiques officielles)</dd></div>
-            <div class="fact"><dt>Prix</dt><dd>190 € la région, 490 € la France, paiement unique</dd></div>
+        <!-- Pièce : un marché réel du fichier, annoté -->
+        <aside class="specimen" aria-label="Exemple de fiche : un marché réel du fichier">
+          <p class="specimen-head"><span>Pièce 03 / 50</span><span>echantillon_gratuit_radar.xlsx</span></p>
+          <dl class="specimen-body">
+            <div class="sp-row"><dt>Acheteur</dt><dd class="sp-buyer">Préfecture de région Nouvelle-Aquitaine <small>Bordeaux (33)</small></dd></div>
+            <div class="sp-row"><dt>Objet</dt><dd>Surveillance humaine et sécurité incendie, lot 3</dd></div>
+            <div class="sp-pair">
+              <div class="sp-row"><dt>Montant HT <sup>1</sup></dt><dd class="sp-num">820 000 €</dd></div>
+              <div class="sp-row"><dt>Échéance estimée <sup>2</sup></dt><dd class="sp-num">avr. 2027</dd></div>
+            </div>
+            <div class="sp-row"><dt>Titulaire actuel <sup>3</sup></dt><dd><mark>Lynx Sécurité</mark></dd></div>
+            <div class="sp-row"><dt>Fiabilité</dt><dd><span class="tag">Haute</span></dd></div>
           </dl>
-          <p class="fact-sheet-foot">Échéances estimées : date de notification + durée déclarée. <a href="#methode" class="underline">Voir la méthode</a></p>
+          <ol class="specimen-notes">
+            <li>Montant attribué, déclaré par l’acheteur.</li>
+            <li>Notification + durée de 48 mois. Une estimation, pas une date contractuelle.</li>
+            <li>L’entreprise en place, celle que vous aurez en face.</li>
+          </ol>
         </aside>
       </div>
     </section>
 
-    <!-- ═════════════ EXEMPLE (lignes réelles de l'échantillon) ═════════════ -->
+    <!-- Chiffres clés : bande dense -->
+    <section class="figures" aria-label="Chiffres clés">
+      <div class="wrap figures-grid">
+        <div class="figure"><p class="figure-n">10 905</p><p class="figure-l">marchés à échéance dans 4 à 10 mois</p></div>
+        <div class="figure"><p class="figure-n">13,3 Md€</p><p class="figure-l">HT attribués au total</p></div>
+        <div class="figure"><p class="figure-n">3</p><p class="figure-l">secteurs : services, maintenance, propreté et déchets</p></div>
+        <div class="figure"><p class="figure-n">20</p><p class="figure-l">régions, outre-mer compris, ou France entière</p></div>
+      </div>
+    </section>
+
+    <!-- ═════════════ § 01 EXEMPLE ═════════════ -->
     <section id="exemple" class="section">
       <div class="wrap">
-        <div class="section-head">
-          <p class="section-label">Exemple<span>Extrait réel du fichier Excel</span></p>
-          <div>
-            <h2 class="h2">Concrètement, voici ce que vous recevez.</h2>
-            <p class="section-intro">Une ligne par marché, prête à filtrer dans Excel. Ces 8 marchés réels viennent de notre échantillon gratuit (libellés raccourcis).</p>
-          </div>
-        </div>
+        <header class="sh">
+          <p class="sh-num">§ 01</p>
+          <p class="sh-label">Exemple<span>Extrait réel du fichier Excel</span></p>
+          <h2 class="sh-title">Concrètement, voici ce que vous recevez.</h2>
+          <p class="sh-intro">Une ligne par marché, prête à filtrer dans Excel. Ces 8 marchés réels viennent de notre échantillon gratuit (libellés raccourcis).</p>
+        </header>
 
-        <div class="demo" role="region" aria-label="Extrait du fichier : 8 marchés réels" tabindex="0">
-          <table class="demo-table">
-            <thead>
-              <tr>
-                <th scope="col">Échéance estimée</th>
-                <th scope="col">Acheteur</th>
-                <th scope="col">Objet du marché</th>
-                <th scope="col" class="num">Montant HT</th>
-                <th scope="col">Titulaire actuel</th>
-                <th scope="col">Fiabilité</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data-l="Échéance estimée" class="date">mars 2027</td>
-                <td data-l="Acheteur" class="buyer">Établissement public de la Réunion des musées nationaux et du Grand Palais <small>Paris 12e</small></td>
-                <td data-l="Objet">Accueil et contrôle des entrées lors des événements</td>
-                <td data-l="Montant HT" class="num">216 000 €</td>
-                <td data-l="Titulaire actuel" class="holder">City One</td>
-                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
-              </tr>
-              <tr>
-                <td data-l="Échéance estimée" class="date">avr. 2027</td>
-                <td data-l="Acheteur" class="buyer">Centre hospitalier de Valenciennes <small>Valenciennes</small></td>
-                <td data-l="Objet">Collecte, transport et élimination des déchets de verre (lot 13)</td>
-                <td data-l="Montant HT" class="num">240 000 €</td>
-                <td data-l="Titulaire actuel" class="holder">Environnement Services</td>
-                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
-              </tr>
-              <tr>
-                <td data-l="Échéance estimée" class="date">avr. 2027</td>
-                <td data-l="Acheteur" class="buyer">Préfecture de région Nouvelle-Aquitaine <small>Bordeaux</small></td>
-                <td data-l="Objet">Surveillance humaine et sécurité incendie (lot 3)</td>
-                <td data-l="Montant HT" class="num">820 000 €</td>
-                <td data-l="Titulaire actuel" class="holder">Lynx Sécurité</td>
-                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
-              </tr>
-              <tr>
-                <td data-l="Échéance estimée" class="date">avr. 2027</td>
-                <td data-l="Acheteur" class="buyer">Inolya <small>Caen</small></td>
-                <td data-l="Objet">Entretien des ascenseurs (lot 4, Pays d’Auge)</td>
-                <td data-l="Montant HT" class="num">208 160 €</td>
-                <td data-l="Titulaire actuel" class="holder">Orona Ouest Nord</td>
-                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
-              </tr>
-              <tr>
-                <td data-l="Échéance estimée" class="date">juin 2027</td>
-                <td data-l="Acheteur" class="buyer">Commune de Marcq-en-Barœul <small>Marcq-en-Barœul</small></td>
-                <td data-l="Objet">Ouverture et fermeture des cimetières (lot 1)</td>
-                <td data-l="Montant HT" class="num">100 000 €</td>
-                <td data-l="Titulaire actuel" class="holder">Securitas France</td>
-                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
-              </tr>
-              <tr>
-                <td data-l="Échéance estimée" class="date">juil. 2027</td>
-                <td data-l="Acheteur" class="buyer">Antin Résidences (SA HLM) <small>Paris 9e</small></td>
-                <td data-l="Objet">Nettoyage des locaux et bâtiments administratifs</td>
-                <td data-l="Montant HT" class="num">1 444 639 €</td>
-                <td data-l="Titulaire actuel" class="holder">Essi</td>
-                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
-              </tr>
-              <tr>
-                <td data-l="Échéance estimée" class="date">août 2027</td>
-                <td data-l="Acheteur" class="buyer">Grand Besançon Métropole <small>Besançon</small></td>
-                <td data-l="Objet">Maintenance et entretien de l’éclairage public périurbain</td>
-                <td data-l="Montant HT" class="num">255 000 €</td>
-                <td data-l="Titulaire actuel" class="holder">SPIE Citynetworks</td>
-                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
-              </tr>
-              <tr>
-                <td data-l="Échéance estimée" class="date">sept. 2027</td>
-                <td data-l="Acheteur" class="buyer">Commune de Nantua <small>Nantua</small></td>
-                <td data-l="Objet">Exploitation et maintenance du chauffage et de l’eau chaude sanitaire</td>
-                <td data-l="Montant HT" class="num">987 048 €</td>
-                <td data-l="Titulaire actuel" class="holder">Dalkia</td>
-                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="demo-note">Le fichier complet donne aussi, pour chaque marché : SIRET et commune de l’acheteur, code CPV, procédure, date de notification, durée, SIRET et taille du titulaire, et les 3 entreprises qui gagnent le plus de marchés similaires dans le département.</p>
+        <figure class="ledger">
+          <figcaption class="ledger-bar">
+            <span class="ledger-file">echantillon_gratuit_radar.xlsx</span>
+            <span class="ledger-meta">8 lignes sur 50 · tri : échéance ↑</span>
+          </figcaption>
+          <div class="ledger-scroll" role="region" aria-label="Extrait du fichier : 8 marchés réels" tabindex="0">
+            <table class="demo-table">
+              <thead>
+                <tr>
+                  <th scope="col">Échéance est.</th>
+                  <th scope="col">Acheteur</th>
+                  <th scope="col">Objet du marché</th>
+                  <th scope="col" class="num">Montant HT</th>
+                  <th scope="col">Titulaire actuel</th>
+                  <th scope="col">Fiabilité</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-l="Échéance estimée" class="date">mars 2027</td>
+                  <td data-l="Acheteur" class="buyer">Établissement public de la Réunion des musées nationaux et du Grand Palais <small>Paris 12e</small></td>
+                  <td data-l="Objet">Accueil et contrôle des entrées lors des événements</td>
+                  <td data-l="Montant HT" class="num">216 000 €</td>
+                  <td data-l="Titulaire actuel" class="holder"><mark>City One</mark></td>
+                  <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+                </tr>
+                <tr>
+                  <td data-l="Échéance estimée" class="date">avr. 2027</td>
+                  <td data-l="Acheteur" class="buyer">Centre hospitalier de Valenciennes <small>Valenciennes</small></td>
+                  <td data-l="Objet">Collecte, transport et élimination des déchets de verre (lot 13)</td>
+                  <td data-l="Montant HT" class="num">240 000 €</td>
+                  <td data-l="Titulaire actuel" class="holder"><mark>Environnement Services</mark></td>
+                  <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+                </tr>
+                <tr>
+                  <td data-l="Échéance estimée" class="date">avr. 2027</td>
+                  <td data-l="Acheteur" class="buyer">Préfecture de région Nouvelle-Aquitaine <small>Bordeaux</small></td>
+                  <td data-l="Objet">Surveillance humaine et sécurité incendie (lot 3)</td>
+                  <td data-l="Montant HT" class="num">820 000 €</td>
+                  <td data-l="Titulaire actuel" class="holder"><mark>Lynx Sécurité</mark></td>
+                  <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+                </tr>
+                <tr>
+                  <td data-l="Échéance estimée" class="date">avr. 2027</td>
+                  <td data-l="Acheteur" class="buyer">Inolya <small>Caen</small></td>
+                  <td data-l="Objet">Entretien des ascenseurs (lot 4, Pays d’Auge)</td>
+                  <td data-l="Montant HT" class="num">208 160 €</td>
+                  <td data-l="Titulaire actuel" class="holder"><mark>Orona Ouest Nord</mark></td>
+                  <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+                </tr>
+                <tr>
+                  <td data-l="Échéance estimée" class="date">juin 2027</td>
+                  <td data-l="Acheteur" class="buyer">Commune de Marcq-en-Barœul <small>Marcq-en-Barœul</small></td>
+                  <td data-l="Objet">Ouverture et fermeture des cimetières (lot 1)</td>
+                  <td data-l="Montant HT" class="num">100 000 €</td>
+                  <td data-l="Titulaire actuel" class="holder"><mark>Securitas France</mark></td>
+                  <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+                </tr>
+                <tr>
+                  <td data-l="Échéance estimée" class="date">juil. 2027</td>
+                  <td data-l="Acheteur" class="buyer">Antin Résidences (SA HLM) <small>Paris 9e</small></td>
+                  <td data-l="Objet">Nettoyage des locaux et bâtiments administratifs</td>
+                  <td data-l="Montant HT" class="num">1 444 639 €</td>
+                  <td data-l="Titulaire actuel" class="holder"><mark>Essi</mark></td>
+                  <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+                </tr>
+                <tr>
+                  <td data-l="Échéance estimée" class="date">août 2027</td>
+                  <td data-l="Acheteur" class="buyer">Grand Besançon Métropole <small>Besançon</small></td>
+                  <td data-l="Objet">Maintenance et entretien de l’éclairage public périurbain</td>
+                  <td data-l="Montant HT" class="num">255 000 €</td>
+                  <td data-l="Titulaire actuel" class="holder"><mark>SPIE Citynetworks</mark></td>
+                  <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+                </tr>
+                <tr>
+                  <td data-l="Échéance estimée" class="date">sept. 2027</td>
+                  <td data-l="Acheteur" class="buyer">Commune de Nantua <small>Nantua</small></td>
+                  <td data-l="Objet">Exploitation et maintenance du chauffage et de l’eau chaude sanitaire</td>
+                  <td data-l="Montant HT" class="num">987 048 €</td>
+                  <td data-l="Titulaire actuel" class="holder"><mark>Dalkia</mark></td>
+                  <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="ledger-foot"><strong>+ 18 colonnes dans le fichier :</strong> SIRET et commune de l’acheteur, code CPV, procédure, date de notification, durée, SIRET et taille du titulaire, et les 3 entreprises qui gagnent le plus de marchés similaires dans le département.</p>
+        </figure>
 
         <div class="cta-row">
-          <a href="#votre-apercu" class="btn btn-buy btn-lg justify-center">Voir les marchés de mon secteur</a>
+          <a href="#votre-apercu" class="btn btn-buy btn-lg">Voir les marchés de mon secteur <span aria-hidden="true">→</span></a>
           <a href="/echantillon_gratuit_radar.xlsx" download class="text-link">Télécharger l’exemple complet (50 marchés, Excel)</a>
         </div>
       </div>
     </section>
 
-    <!-- ═════════════ APERÇU GRATUIT PERSONNALISÉ (aussi lien ?f=&r= des e-mails) ═════════════ -->
-    <section id="votre-apercu" class="section apercu">
+    <!-- ═════════════ § 02 APERÇU GRATUIT (aussi lien ?f=&r= des e-mails) ═════════════ -->
+    <section id="votre-apercu" class="section section-dense apercu">
       <div class="wrap">
-        <div class="section-head">
-          <p class="section-label">Aperçu gratuit<span id="ap-zone">5 marchés de votre secteur, dans votre région</span></p>
-          <div>
-            <h2 class="h2" id="ap-titre">Combien de marchés arrivent à échéance près de chez vous ?</h2>
-            <p class="section-intro">Choisissez votre secteur et votre région : vous voyez tout de suite 5 marchés réels et le nombre total disponible dans le fichier.</p>
-          </div>
-        </div>
+        <header class="sh">
+          <p class="sh-num">§ 02</p>
+          <p class="sh-label">Aperçu gratuit<span id="ap-zone">5 marchés de votre secteur, dans votre région</span></p>
+          <h2 class="sh-title" id="ap-titre">Combien de marchés arrivent à échéance près de chez vous ?</h2>
+          <p class="sh-intro">Choisissez votre secteur et votre région : vous voyez tout de suite 5 marchés réels et le nombre total disponible dans le fichier.</p>
+        </header>
 
-        <form class="ap-choix" id="ap-choix" aria-label="Choisir un secteur et une région">
+        <form class="query ap-choix" id="ap-choix" aria-label="Choisir un secteur et une région">
+          <p class="query-label" aria-hidden="true">Requête</p>
           <label><span>Secteur</span>
             <select id="ap-f" class="sel-f">
               <option value="79">Services aux entreprises (sécurité, intérim, conseil, communication)</option>
@@ -278,47 +301,53 @@
           <label><span>Région</span>
             <select id="ap-r" class="sel-r"><option value="ile-de-france">Île-de-France</option></select>
           </label>
-          <button type="submit" class="btn btn-buy btn-lg justify-center">Obtenir mon aperçu gratuit</button>
+          <button type="submit" class="btn btn-buy btn-lg">Obtenir mon aperçu gratuit</button>
         </form>
 
         <div id="ap-resultat" class="ap-resultat" aria-live="polite">
-          <p class="ap-compte" id="ap-intro"></p>
-          <div class="demo" role="region" aria-label="Aperçu : 5 marchés de votre secteur et de votre région" tabindex="0">
-            <table class="demo-table">
-              <thead><tr><th scope="col">Échéance estimée</th><th scope="col">Acheteur</th><th scope="col">Objet du marché</th><th scope="col" class="num">Montant HT</th><th scope="col">Titulaire actuel</th></tr></thead>
-              <tbody id="ap-lignes"></tbody>
-            </table>
-          </div>
-          <p class="ap-erreur" id="ap-erreur" hidden>L’aperçu n’a pas pu se charger. Rechargez la page, ou <a href="/echantillon_gratuit_radar.xlsx" download class="underline">téléchargez l’exemple de 50 marchés</a>.</p>
-
-          <div class="buybox">
-            <div>
-              <p class="buybox-kicker">Le fichier complet</p>
-              <p class="buybox-title" id="ap-plus">Tous les marchés de votre secteur et de votre région</p>
-              <p class="buybox-sub">Avec les titulaires actuels, leurs SIRET et 3 concurrents locaux par marché.</p>
+          <figure class="ledger">
+            <figcaption class="ledger-bar">
+              <span class="ledger-file" id="ap-fichier">radar_79_ile-de-france.xlsx</span>
+              <span class="ledger-meta" id="ap-intro"></span>
+            </figcaption>
+            <div class="ledger-scroll" role="region" aria-label="Aperçu : 5 marchés de votre secteur et de votre région" tabindex="0">
+              <table class="demo-table">
+                <thead><tr><th scope="col">Échéance est.</th><th scope="col">Acheteur</th><th scope="col">Objet du marché</th><th scope="col" class="num">Montant HT</th><th scope="col">Titulaire actuel</th></tr></thead>
+                <tbody id="ap-lignes"></tbody>
+              </table>
             </div>
-            <div class="buybox-actions">
-              <a id="ap-acheter" href="https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" class="btn btn-buy btn-lg justify-center" rel="noopener">Acheter le fichier · 190 €</a>
+            <p class="ledger-foot">Titulaires masqués dans l’aperçu : ils figurent, avec leur SIRET, dans le fichier complet.</p>
+          </figure>
+          <p class="ap-erreur" id="ap-erreur" hidden>L’aperçu n’a pas pu se charger. Rechargez la page, ou <a href="/echantillon_gratuit_radar.xlsx" download class="u">téléchargez l’exemple de 50 marchés</a>.</p>
+
+          <div class="order">
+            <div class="order-text">
+              <p class="order-kicker">Bon de commande <span class="cut" aria-hidden="true"></span> Fichier complet</p>
+              <p class="order-title" id="ap-plus">Tous les marchés de votre secteur et de votre région</p>
+              <p class="order-sub">Avec les titulaires actuels, leurs SIRET et 3 concurrents locaux par marché.</p>
+            </div>
+            <div class="order-actions">
+              <a id="ap-acheter" href="https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" class="btn btn-buy btn-lg btn-block" rel="noopener">Acheter le fichier · 190 €</a>
               <a id="ap-france" href="https://buy.stripe.com/aFadR92u22fSef9bFj5AQ01" class="text-link" rel="noopener">ou France entière · 490 €</a>
-              <p class="reassure">Paiement unique <span aria-hidden="true">·</span> 14 jours satisfait ou remboursé</p>
+              <p class="reassure">Paiement unique <i aria-hidden="true">/</i> 14 jours satisfait ou remboursé</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═════════════ OFFRES ═════════════ -->
+    <!-- ═════════════ § 03 TARIFS ═════════════ -->
     <section id="offres" class="section">
       <div class="wrap">
-        <div class="section-head">
-          <p class="section-label">Tarifs<span>Paiement unique, sans abonnement</span></p>
-          <div>
-            <h2 class="h2">Votre fichier, livré par e-mail dès le paiement.</h2>
-            <p class="section-intro">Choisissez votre secteur et votre zone : c’est ce fichier précis qui vous est envoyé, en Excel et en CSV, sans autre démarche.</p>
-          </div>
-        </div>
+        <header class="sh">
+          <p class="sh-num">§ 03</p>
+          <p class="sh-label">Tarifs<span>Paiement unique, sans abonnement</span></p>
+          <h2 class="sh-title">Votre fichier, livré par <span class="nw">e-mail</span> dès le paiement.</h2>
+          <p class="sh-intro">Choisissez votre secteur et votre zone : c’est ce fichier précis qui vous est envoyé, en Excel et en CSV, sans autre démarche.</p>
+        </header>
 
-        <form class="ap-choix ap-choix-offres" aria-label="Choisir le fichier à acheter">
+        <form class="query query-inline ap-choix ap-choix-offres" aria-label="Choisir le fichier à acheter">
+          <p class="query-label" aria-hidden="true">Votre fichier</p>
           <label><span>Secteur</span>
             <select class="sel-f">
               <option value="79">Services aux entreprises (sécurité, intérim, conseil, communication)</option>
@@ -331,11 +360,11 @@
           </label>
         </form>
 
-        <div class="offers offers-2">
+        <div class="offers">
           <article class="offer offer-featured">
-            <p class="offer-kicker">Régional</p>
+            <p class="offer-kicker"><span>Offre A</span><span>Régional</span></p>
             <h3 class="offer-title">1 secteur, 1 région</h3>
-            <p class="offer-price">190 €</p>
+            <p class="offer-price">190<span>€</span></p>
             <p class="offer-delay" data-offre="region">Tous les marchés du secteur dans la région choisie</p>
             <ul class="offer-list">
               <li>Fin de contrat estimée dans 4 à 10 mois</li>
@@ -343,14 +372,14 @@
               <li>Indice de fiabilité et 3 concurrents locaux</li>
               <li>Fichiers Excel et CSV</li>
             </ul>
-            <a href="https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" class="btn btn-buy btn-lg w-full justify-center" rel="noopener" data-achat="region">Acheter · 190 €</a>
-            <p class="reassure">Paiement unique · 14 jours satisfait ou remboursé</p>
+            <a href="https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" class="btn btn-buy btn-lg btn-block" rel="noopener" data-achat="region">Acheter · 190 €</a>
+            <p class="reassure">Paiement unique <i aria-hidden="true">/</i> 14 jours satisfait ou remboursé</p>
           </article>
 
           <article class="offer">
-            <p class="offer-kicker">National</p>
+            <p class="offer-kicker"><span>Offre B</span><span>National</span></p>
             <h3 class="offer-title">1 secteur, France entière</h3>
-            <p class="offer-price">490 €</p>
+            <p class="offer-price">490<span>€</span></p>
             <p class="offer-delay" data-offre="france">3 100 à 4 400 marchés selon le secteur</p>
             <ul class="offer-list">
               <li>Fin de contrat estimée dans 4 à 10 mois, toutes régions</li>
@@ -358,123 +387,127 @@
               <li>Indice de fiabilité et 3 concurrents locaux</li>
               <li>Fichiers Excel et CSV</li>
             </ul>
-            <a href="https://buy.stripe.com/aFadR92u22fSef9bFj5AQ01" class="btn btn-dark btn-lg w-full justify-center" rel="noopener" data-achat="france">Acheter · 490 €</a>
-            <p class="reassure">Paiement unique · 14 jours satisfait ou remboursé</p>
+            <a href="https://buy.stripe.com/aFadR92u22fSef9bFj5AQ01" class="btn btn-dark btn-lg btn-block" rel="noopener" data-achat="france">Acheter · 490 €</a>
+            <p class="reassure">Paiement unique <i aria-hidden="true">/</i> 14 jours satisfait ou remboursé</p>
           </article>
         </div>
 
-        <div class="roi">
-          <p><strong>Pour comparer :</strong> le montant médian d’un marché du Radar est de 167 000 à 200 000 € HT selon le secteur.</p>
-          <p><strong>Satisfait ou remboursé 14 jours</strong>, sur simple e-mail, sans justification.</p>
-          <p><strong>Plusieurs régions ou plusieurs clients ?</strong> 3 fichiers pour le prix de 2 (ex. 3 régions pour 380 € au lieu de 570 €). Écrivez à <a href="mailto:radar@bistouri-radar.fr?subject=Radar%20%E2%80%94%203%20fichiers%20pour%20le%20prix%20de%202" class="underline">radar@bistouri-radar.fr</a> avec vos secteurs et régions.</p>
-        </div>
+        <ol class="notes">
+          <li><strong>Pour comparer :</strong> le montant médian d’un marché du Radar est de 167 000 à 200 000 € HT selon le secteur.</li>
+          <li><strong>Satisfait ou remboursé 14 jours</strong>, sur simple e-mail, sans justification.</li>
+          <li><strong>Plusieurs régions ou plusieurs clients ?</strong> 3 fichiers pour le prix de 2 (ex. 3 régions pour 380 € au lieu de 570 €). Écrivez à <a href="mailto:radar@bistouri-radar.fr?subject=Radar%20%E2%80%94%203%20fichiers%20pour%20le%20prix%20de%202" class="u">radar@bistouri-radar.fr</a> avec vos secteurs et régions.</li>
+        </ol>
 
         <p class="fine-print">Paiement sécurisé par Stripe. Facture fournie. TVA non applicable, art. 293 B du CGI.</p>
       </div>
     </section>
 
-    <!-- ═════════════ MÉTHODE ═════════════ -->
-    <section id="methode" class="section">
+    <!-- ═════════════ § 04 MÉTHODE ═════════════ -->
+    <section id="methode" class="section section-dense">
       <div class="wrap">
-        <div class="section-head">
-          <p class="section-label">Méthode<span>Ce que le fichier dit, et ne dit pas</span></p>
-          <div>
-            <h2 class="h2">Des données publiques officielles, nettoyées et datées.</h2>
-            <p class="section-intro">Données actualisées le 15 novembre 2026, à partir de la base nationale consolidée.</p>
-          </div>
-        </div>
+        <header class="sh">
+          <p class="sh-num">§ 04</p>
+          <p class="sh-label">Méthode<span>Ce que le fichier dit, et ne dit pas</span></p>
+          <h2 class="sh-title">Des données publiques officielles, nettoyées et datées.</h2>
+          <p class="sh-intro">Données actualisées le 15 novembre 2026, à partir de la base nationale consolidée.</p>
+        </header>
 
         <ol class="steps">
           <li class="step">
-            <span class="step-num">01</span>
+            <p class="step-num">01</p>
             <h3 class="step-title">Source publique</h3>
-            <p class="step-time">DECP, data.gouv.fr</p>
+            <p class="step-time">DECP · data.gouv.fr</p>
             <p class="step-text">Les acheteurs publics sont tenus de publier les données essentielles de leurs marchés. Nous partons de la base consolidée sur data.gouv.fr (Licence Ouverte 2.0).</p>
           </li>
           <li class="step">
-            <span class="step-num">02</span>
+            <p class="step-num">02</p>
             <h3 class="step-title">Nettoyage</h3>
             <p class="step-time">1,74 million de marchés retenus</p>
             <p class="step-text">Montants aberrants, durées incohérentes, titulaires absents et codes CPV invalides sont écartés.</p>
           </li>
           <li class="step">
-            <span class="step-num">03</span>
+            <p class="step-num">03</p>
             <h3 class="step-title">Échéance estimée</h3>
             <p class="step-time">Notification + durée déclarée</p>
             <p class="step-text">Fiabilité « Haute » quand la durée est standard (12, 24, 36, 48 ou 60 mois), « Estimée » sinon.</p>
           </li>
         </ol>
 
-        <p class="avertissement"><strong>À savoir :</strong> l’échéance est une estimation, pas une date contractuelle. Une reconduction, un avenant ou un regroupement peut la décaler, et rien ne garantit que l’acheteur relancera une consultation. Pour un accord-cadre, le montant indiqué est souvent un plafond.</p>
+        <p class="avertissement"><span class="av-label">N.B.</span> L’échéance est une estimation, pas une date contractuelle. Une reconduction, un avenant ou un regroupement peut la décaler, et rien ne garantit que l’acheteur relancera une consultation. Pour un accord-cadre, le montant indiqué est souvent un plafond.</p>
       </div>
     </section>
 
-    <!-- ═════════════ QUESTIONS ═════════════ -->
+    <!-- ═════════════ § 05 QUESTIONS ═════════════ -->
     <section id="questions" class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <p class="section-label">Questions<span>Avant d’acheter</span></p>
-          <div>
-            <h2 class="h2">Les réponses courtes.</h2>
+      <div class="wrap faq-grid">
+        <header class="sh sh-side">
+          <p class="sh-num">§ 05</p>
+          <p class="sh-label">Questions<span>Avant d’acheter</span></p>
+          <h2 class="sh-title">Les réponses courtes.</h2>
+        </header>
+        <div>
+          <div class="faq">
+            <details>
+              <summary>Que contient le Radar ?</summary>
+              <p>Les marchés publics de votre secteur dont la fin est estimée dans 4 à 10 mois : qui achète, quoi, pour combien, qui tient le marché aujourd’hui, et quand il devrait se terminer. Avec 3 concurrents locaux par marché.</p>
+            </details>
+            <details>
+              <summary>Quelle est la différence avec le BOAMP ?</summary>
+              <p>Le BOAMP publie l’appel d’offres une fois lancé : il reste alors souvent quelques semaines pour répondre, et le cahier des charges est écrit. Le Radar vous signale les contrats en cours plusieurs mois avant, pour vous faire connaître de l’acheteur pendant qu’il prépare son besoin.</p>
+            </details>
+            <details>
+              <summary>Les dates sont-elles fiables ?</summary>
+              <p>Ce sont des estimations, calculées à partir des données déclarées par l’acheteur, avec un indice de fiabilité sur chaque ligne. Une reconduction ou un avenant peut décaler la date, et un renouvellement n’est jamais garanti. C’est pourquoi le Radar couvre une fenêtre de 4 à 10 mois.</p>
+            </details>
+            <details>
+              <summary>Comment utiliser ces informations ?</summary>
+              <p>Filtrez par département et montant, puis contactez les acheteurs ciblés : présentation de votre entreprise, demande de rendez-vous, veille sur leur profil acheteur. Vous savez aussi qui est le titulaire actuel que vous aurez en face.</p>
+            </details>
+            <details>
+              <summary>Comment recevoir mon fichier ?</summary>
+              <p>Choisissez votre secteur et votre région sur cette page, puis payez. Le fichier correspondant (Excel et CSV) vous est envoyé automatiquement par e-mail, en général dans les 2 heures. Rien d’autre à faire.</p>
+            </details>
+            <details>
+              <summary>Et si le fichier ne me convient pas ?</summary>
+              <p>Vous êtes remboursé intégralement pendant 14 jours, sur simple e-mail à <a href="mailto:radar@bistouri-radar.fr" class="u">radar@bistouri-radar.fr</a>, sans justification.</p>
+            </details>
+          </div>
+          <div class="cta-row">
+            <a href="#votre-apercu" class="btn btn-buy btn-lg">Obtenir mon aperçu gratuit <span aria-hidden="true">→</span></a>
+            <a href="#offres" class="text-link">Voir les tarifs</a>
           </div>
         </div>
-        <div class="faq">
-          <details>
-            <summary>Que contient le Radar ?</summary>
-            <p>Les marchés publics de votre secteur dont la fin est estimée dans 4 à 10 mois : qui achète, quoi, pour combien, qui tient le marché aujourd’hui, et quand il devrait se terminer. Avec 3 concurrents locaux par marché.</p>
-          </details>
-          <details>
-            <summary>Quelle est la différence avec le BOAMP ?</summary>
-            <p>Le BOAMP publie l’appel d’offres une fois lancé : il reste alors souvent quelques semaines pour répondre, et le cahier des charges est écrit. Le Radar vous signale les contrats en cours plusieurs mois avant, pour vous faire connaître de l’acheteur pendant qu’il prépare son besoin.</p>
-          </details>
-          <details>
-            <summary>Les dates sont-elles fiables ?</summary>
-            <p>Ce sont des estimations, calculées à partir des données déclarées par l’acheteur, avec un indice de fiabilité sur chaque ligne. Une reconduction ou un avenant peut décaler la date, et un renouvellement n’est jamais garanti. C’est pourquoi le Radar couvre une fenêtre de 4 à 10 mois.</p>
-          </details>
-          <details>
-            <summary>Comment utiliser ces informations ?</summary>
-            <p>Filtrez par département et montant, puis contactez les acheteurs ciblés : présentation de votre entreprise, demande de rendez-vous, veille sur leur profil acheteur. Vous savez aussi qui est le titulaire actuel que vous aurez en face.</p>
-          </details>
-          <details>
-            <summary>Comment recevoir mon fichier ?</summary>
-            <p>Choisissez votre secteur et votre région sur cette page, puis payez. Le fichier correspondant (Excel et CSV) vous est envoyé automatiquement par e-mail, en général dans les 2 heures. Rien d’autre à faire.</p>
-          </details>
-          <details>
-            <summary>Et si le fichier ne me convient pas ?</summary>
-            <p>Vous êtes remboursé intégralement pendant 14 jours, sur simple e-mail à <a href="mailto:radar@bistouri-radar.fr" class="underline">radar@bistouri-radar.fr</a>, sans justification.</p>
-          </details>
-        </div>
-        <div class="cta-row">
-          <a href="#votre-apercu" class="btn btn-buy btn-lg justify-center">Obtenir mon aperçu gratuit</a>
-          <a href="#offres" class="text-link">Voir les tarifs</a>
-        </div>
       </div>
     </section>
 
-    <!-- ═════════════ CTA FINAL ═════════════ -->
+    <!-- ═════════════ CLÔTURE ═════════════ -->
     <section id="echantillon" class="closing">
-      <div class="wrap grid gap-10 lg:grid-cols-12">
-        <div class="lg:col-span-8">
-          <p class="closing-label">Paiement unique · 14 jours satisfait ou remboursé</p>
-          <p class="closing-title">Préparez vos prochains rendez-vous acheteurs dès aujourd’hui.</p>
+      <div class="wrap closing-grid">
+        <div>
+          <p class="closing-label">Paiement unique <i aria-hidden="true">/</i> 14 jours satisfait ou remboursé</p>
+          <p class="closing-title">Préparez vos prochains rendez-vous acheteurs <em>dès aujourd’hui.</em></p>
         </div>
-        <div class="flex flex-col justify-end gap-3 lg:col-span-4">
-          <a href="#votre-apercu" class="btn btn-light btn-lg justify-center">Découvrir les marchés disponibles</a>
-          <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-outline-light btn-lg justify-center">Télécharger l’exemple gratuit</a>
+        <div class="closing-actions">
+          <a href="#votre-apercu" class="btn btn-light btn-lg btn-block">Découvrir les marchés disponibles <span aria-hidden="true">→</span></a>
+          <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-outline-light btn-lg btn-block">Télécharger l’exemple gratuit</a>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ═════════════ FOOTER ═════════════ -->
+  <!-- ═════════════ PIED DE PAGE ═════════════ -->
   <footer class="footer">
-    <div class="wrap flex flex-col gap-4 py-8 md:flex-row md:items-start md:justify-between">
-      <p>
+    <div class="wrap footer-grid">
+      <div>
+        <p class="footer-wm"><span class="wm-cut" aria-hidden="true"></span>Bistouri</p>
+        <p class="footer-tag">Outil indépendant d’intelligence commerciale sur les marchés publics.</p>
+      </div>
+      <p class="footer-legal">
         © <span id="year">2026</span> Bistouri — Waël Benhallam, entrepreneur individuel (micro-entreprise), Paris.<br>
         SIREN 935 246 801 · SIRET 935 246 801 00010 · TVA non applicable, art. 293 B du CGI.<br>
         Données : DECP, data.gouv.fr, Licence Ouverte 2.0 · Hébergement : Vercel Inc., Covina, CA, États-Unis.
       </p>
-      <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+      <div class="footer-links">
         <a href="mailto:radar@bistouri-radar.fr">radar@bistouri-radar.fr</a>
         <button type="button" id="open-legal" aria-haspopup="dialog">Mentions légales</button>
       </div>
@@ -483,11 +516,11 @@
 
   <!-- ═════════════ MODALE : MENTIONS LÉGALES ═════════════ -->
   <dialog id="legal-modal" class="modal" aria-labelledby="legal-title">
-    <div class="modal-panel modal-panel-lg">
+    <div class="modal-panel">
       <div class="modal-head">
         <span class="modal-kicker">Informations légales</span>
         <button type="button" class="modal-close" data-close aria-label="Fermer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
         </button>
       </div>
       <div class="modal-body prose-legal" id="legal-body">
@@ -498,8 +531,8 @@
           <dt>Nom</dt><dd>Bistouri — Waël Benhallam</dd>
           <dt>Statut</dt><dd>Entrepreneur individuel (micro-entreprise)</dd>
           <dt>Adresse</dt><dd>Paris, France</dd>
-          <dt>SIREN</dt><dd class="font-mono">935 246 801</dd>
-          <dt>SIRET</dt><dd class="font-mono">935 246 801 00010</dd>
+          <dt>SIREN</dt><dd class="mono">935 246 801</dd>
+          <dt>SIRET</dt><dd class="mono">935 246 801 00010</dd>
           <dt>TVA</dt><dd>TVA non applicable, art. 293 B du CGI</dd>
           <dt>Contact</dt><dd><a href="mailto:radar@bistouri-radar.fr">radar@bistouri-radar.fr</a></dd>
           <dt>Directeur de la publication</dt><dd>Waël Benhallam</dd>
@@ -528,6 +561,6 @@
     </div>
   </dialog>
 
-  <script src="radar.js?v=4" defer></script>
+  <script src="radar.js?v=6" defer></script>
 </body>
 </html>

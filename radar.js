@@ -69,7 +69,9 @@
     } catch (e) { /* stockage indisponible : on ne compte pas */ }
   }
 
-  const nf = new Intl.NumberFormat("fr-FR");
+  // espace insécable classique : l'espace fine (U+202F) manque dans la police de titre
+  const intl = new Intl.NumberFormat("fr-FR");
+  const nf = { format: (n) => intl.format(n).replace(/\u202f/g, "\u00a0") };
   const MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
   const mois = (iso) => { const [y, m] = iso.split("-"); return MOIS[+m - 1] + " " + y; };
   const cell = (txt, cls) => { const td = document.createElement("td"); td.textContent = txt; if (cls) td.className = cls; return td; };
@@ -125,8 +127,9 @@
     const n = Math.min(AP_LIGNES, d.lignes.length);
     $("#ap-zone").textContent = d.libelle + " · " + d.zone;
     $("#ap-titre").textContent = nf.format(d.marches) + " marchés publics à échéance " + enZone + " (" + d.libelle.toLowerCase() + ").";
-    $("#ap-intro").textContent = "Voici " + n + " d’entre eux, parmi les plus proches. Fin estimée dans 4 à 10 mois, " +
-      nf.format(Math.round(d.montant_total_meur)) + " M€ HT attribués au total.";
+    $("#ap-fichier").textContent = "radar_" + f + "_" + r + ".xlsx";
+    $("#ap-intro").textContent = n + " lignes sur " + nf.format(d.marches) + " · " +
+      nf.format(Math.round(d.montant_total_meur)) + " M€ HT au total";
     const tb = $("#ap-lignes");
     tb.replaceChildren();
     d.lignes.slice(0, AP_LIGNES).forEach((x) => {

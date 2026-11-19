@@ -3,6 +3,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".",
   "rewrites": [
-    { "source": "/radar", "destination": "/index.html" }
+    { "source": "/radar", "destination": "/index.html" },
+    { "source": "/merci", "destination": "/merci.html" }
+  ],
+  "headers": [
+    { "source": "/merci(.html)?", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }
   ]
 }

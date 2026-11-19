@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <script>document.documentElement.classList.replace('no-js','js');</script>
 
-  <title>Radar des marchés publics à échéance — Bistouri</title>
-  <meta name="description" content="Repérez les marchés publics qui arrivent à échéance 4 à 10 mois avant leur remise en concurrence : acheteur, titulaire en place, montant et date, à partir des données officielles DECP nettoyées. Échantillon gratuit de 50 marchés.">
+  <title>Marchés publics arrivant à échéance : prospectez avant l’appel d’offres | Bistouri Radar</title>
+  <meta name="description" content="Fichier Excel des marchés publics dont la fin est estimée dans 4 à 10 mois : acheteur, titulaire actuel, montant HT. Données officielles DECP. Aperçu gratuit de votre secteur et de votre région.">
   <meta name="author" content="Waël Benhallam">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#FAFAFA">
@@ -15,14 +15,19 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
-  <meta property="og:site_name" content="Bistouri">
-  <meta property="og:title" content="Radar des marchés publics arrivant à échéance">
-  <meta property="og:description" content="Anticipez les appels d’offres publics 4 à 10 mois avant leur republication, grâce aux données officielles DECP nettoyées.">
+  <meta property="og:site_name" content="Bistouri Radar">
+  <meta property="og:title" content="Identifiez les marchés publics arrivant à échéance avant vos concurrents">
+  <meta property="og:description" content="Les contrats publics dont la fin est estimée dans 4 à 10 mois, avec l’acheteur, le titulaire actuel et le montant. Données officielles DECP. Aperçu gratuit.">
   <meta property="og:url" content="https://bistouri.app/">
+  <meta property="og:image" content="https://bistouri.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bistouri Radar : les marchés publics arrivant à échéance dans votre secteur">
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Radar des marchés publics arrivant à échéance">
-  <meta name="twitter:description" content="Acheteur, titulaire en place, montant et date d’échéance. Échantillon gratuit de 50 marchés.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Identifiez les marchés publics arrivant à échéance avant vos concurrents">
+  <meta name="twitter:description" content="Acheteur, titulaire actuel, montant HT et échéance estimée. Aperçu gratuit par secteur et région.">
+  <meta name="twitter:image" content="https://bistouri.app/og-image.png">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
@@ -33,7 +38,7 @@
 
   <!-- Tailwind CSS compilé (npm run build) + styles du site -->
   <link rel="stylesheet" href="tailwind.css">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 
   <!-- Données structurées -->
   <script type="application/ld+json">
@@ -41,12 +46,24 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "Radar des marchés publics arrivant à échéance",
-    "description": "Fichier des marchés publics dont l’échéance est estimée dans 4 à 10 mois, établi à partir des données essentielles de la commande publique (DECP).",
+    "description": "Fichier Excel et CSV des marchés publics dont l’échéance est estimée dans 4 à 10 mois, établi à partir des données essentielles de la commande publique (DECP) : acheteur, objet, montant HT, titulaire actuel.",
     "brand": { "@type": "Brand", "name": "Bistouri" },
     "url": "https://bistouri.app/",
+    "image": "https://bistouri.app/og-image.png",
     "offers": [
       { "@type": "Offer", "name": "1 secteur, 1 région", "price": "190", "priceCurrency": "EUR", "url": "https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" },
       { "@type": "Offer", "name": "1 secteur, France entière", "price": "490", "priceCurrency": "EUR", "url": "https://buy.stripe.com/aFadR92u22fSef9bFj5AQ01" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Que contient le Radar ?", "acceptedAnswer": { "@type": "Answer", "text": "Un fichier Excel et CSV des marchés publics de votre secteur dont la fin est estimée dans 4 à 10 mois : acheteur, objet, montant HT, titulaire actuel, échéance estimée, indice de fiabilité et trois concurrents locaux." } },
+      { "@type": "Question", "name": "Quelle est la différence avec le BOAMP ?", "acceptedAnswer": { "@type": "Answer", "text": "Le BOAMP publie un appel d’offres une fois lancé. Le Radar repère en amont les contrats en cours dont la fin approche, pour préparer votre prospection avant une éventuelle remise en concurrence." } },
+      { "@type": "Question", "name": "Les dates sont-elles fiables ?", "acceptedAnswer": { "@type": "Answer", "text": "Ce sont des estimations : date de notification + durée déclarée par l’acheteur. Une reconduction, un avenant ou un regroupement peut décaler la date, et un renouvellement n’est jamais garanti." } }
     ]
   }
   </script>
@@ -64,14 +81,15 @@
       </a>
 
       <nav class="hidden items-center gap-9 md:flex" aria-label="Navigation principale">
-        <a href="#contenu-fichier" class="nav-link">Le fichier</a>
-        <a href="#offres" class="nav-link">Offres</a>
+        <a href="#exemple" class="nav-link">Exemple</a>
+        <a href="#votre-apercu" class="nav-link">Aperçu gratuit</a>
+        <a href="#offres" class="nav-link">Tarifs</a>
         <a href="#methode" class="nav-link">Méthode</a>
         <a href="#questions" class="nav-link">Questions</a>
       </nav>
 
       <div class="flex items-center gap-2">
-        <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-dark btn-sm">Échantillon gratuit</a>
+        <a href="#offres" class="btn btn-buy btn-sm">Acheter le fichier</a>
         <button type="button" id="menu-toggle" class="menu-toggle md:hidden" aria-controls="mobile-menu" aria-expanded="false" aria-label="Ouvrir le menu">
           <svg class="icon-open" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
           <svg class="icon-close hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -81,11 +99,12 @@
 
     <nav id="mobile-menu" class="mobile-menu md:hidden" aria-label="Navigation mobile" hidden>
       <div class="wrap flex flex-col pb-6">
-        <a href="#contenu-fichier" class="mobile-link">Le fichier</a>
-        <a href="#offres" class="mobile-link">Offres</a>
+        <a href="#exemple" class="mobile-link">Exemple</a>
+        <a href="#votre-apercu" class="mobile-link">Aperçu gratuit</a>
+        <a href="#offres" class="mobile-link">Tarifs</a>
         <a href="#methode" class="mobile-link">Méthode</a>
         <a href="#questions" class="mobile-link">Questions</a>
-        <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-dark mt-5 w-full justify-center">Télécharger l’échantillon gratuit</a>
+        <a href="#votre-apercu" class="btn btn-buy mt-5 w-full justify-center">Découvrir les marchés disponibles</a>
       </div>
     </nav>
   </header>
@@ -98,107 +117,193 @@
         <div class="lg:col-span-7">
           <p class="availability">
             <span class="availability-mark" aria-hidden="true"></span>
-            Radar des marchés publics · données DECP de novembre 2026
+            Données publiques DECP · actualisées le 15&nbsp;novembre&nbsp;2026
           </p>
 
-          <h1 class="display mt-8">Repérez les marchés publics à renouveler 4 à 10&nbsp;mois avant l’appel d’offres.</h1>
+          <h1 class="display mt-8">Identifiez les marchés publics arrivant à échéance avant vos concurrents.</h1>
 
           <p class="lede mt-7">
-            Chaque marché public attribué a une date de fin. Le Radar liste ceux qui arrivent à échéance dans votre secteur et votre région, avec l’acheteur, le titulaire en place, le montant et la date estimée, à partir des données officielles de la commande publique (DECP) nettoyées.
+            Repérez les contrats dont la fin est estimée dans les 4 à 10 prochains mois. Identifiez les acheteurs publics, les titulaires actuels et les opportunités de prospection dans votre secteur.
           </p>
 
-          <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-7">
-            <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-dark btn-lg justify-center">Télécharger l’échantillon gratuit&nbsp;(50&nbsp;marchés)</a>
-            <a href="#votre-apercu" class="text-link">Voir les marchés de votre région ↓</a>
+          <ul class="hero-points" aria-label="Ce que contient le fichier">
+            <li>Acheteur public</li>
+            <li>Titulaire actuel</li>
+            <li>Montant HT</li>
+            <li>Échéance estimée</li>
+          </ul>
+
+          <div class="hero-cta">
+            <a href="#votre-apercu" class="btn btn-buy btn-lg justify-center">Découvrir les marchés disponibles</a>
+            <a href="#exemple" class="btn btn-line btn-lg justify-center">Voir un exemple gratuit</a>
           </div>
-          <p class="fine-print">Fichier Excel, 50 marchés réels de 42 k€ à 2,9 M€. Téléchargement direct, sans inscription.</p>
+          <p class="reassure">Paiement unique <span aria-hidden="true">·</span> 14 jours satisfait ou remboursé <span aria-hidden="true">·</span> Excel et CSV</p>
         </div>
 
         <aside class="fact-sheet lg:col-span-5 lg:col-start-8" aria-label="En bref">
           <p class="fact-sheet-head">
             <span>En bref</span>
-            <span class="fact-sheet-ref">Novembre 2026</span>
+            <span class="fact-sheet-ref">Mise à jour 15/11/2026</span>
           </p>
           <dl>
-            <div class="fact"><dt>Marchés suivis</dt><dd>10 905 à échéance dans 4 à 10 mois</dd></div>
+            <div class="fact"><dt>Marchés repérés</dt><dd>10 905 dont la fin est estimée dans 4 à 10 mois</dd></div>
             <div class="fact"><dt>Secteurs</dt><dd>Services aux entreprises, maintenance, propreté et déchets</dd></div>
-            <div class="fact"><dt>Source</dt><dd>DECP, data.gouv.fr (Licence Ouverte 2.0)</dd></div>
-            <div class="fact"><dt>Format</dt><dd>Excel et CSV, paiement unique</dd></div>
+            <div class="fact"><dt>Source</dt><dd>DECP, data.gouv.fr (données publiques officielles)</dd></div>
+            <div class="fact"><dt>Prix</dt><dd>190 € la région, 490 € la France, paiement unique</dd></div>
           </dl>
-          <p class="fact-sheet-foot">Les échéances sont estimées : date de notification + durée déclarée du marché.</p>
+          <p class="fact-sheet-foot">Échéances estimées : date de notification + durée déclarée. <a href="#methode" class="underline">Voir la méthode</a></p>
         </aside>
       </div>
     </section>
 
-    <!-- ═════════════ APERÇU PERSONNALISÉ (lien ?f=&r= des e-mails) ═════════════ -->
-    <section id="votre-apercu" class="section apercu">
+    <!-- ═════════════ EXEMPLE (lignes réelles de l'échantillon) ═════════════ -->
+    <section id="exemple" class="section">
       <div class="wrap">
         <div class="section-head">
-          <p class="section-label">Vos marchés<span id="ap-zone">Choisissez votre secteur et votre région</span></p>
+          <p class="section-label">Exemple<span>Extrait réel du fichier Excel</span></p>
           <div>
-            <form class="ap-choix" id="ap-choix" aria-label="Choisir un secteur et une région">
-              <label><span>Secteur</span>
-                <select id="ap-f">
-                  <option value="79">Services aux entreprises (sécurité, intérim, conseil, communication)</option>
-                  <option value="50">Réparation et maintenance</option>
-                  <option value="90">Propreté, déchets, assainissement</option>
-                </select>
-              </label>
-              <label><span>Région</span>
-                <select id="ap-r"><option value="ile-de-france">Île-de-France</option></select>
-              </label>
-            </form>
-            <h2 class="h2" id="ap-titre">Les marchés de votre secteur qui se renouvellent près de chez vous.</h2>
-            <p class="section-intro" id="ap-intro"></p>
+            <h2 class="h2">Concrètement, voici ce que vous recevez.</h2>
+            <p class="section-intro">Une ligne par marché, prête à filtrer dans Excel. Ces 8 marchés réels viennent de notre échantillon gratuit (libellés raccourcis).</p>
           </div>
         </div>
-        <div class="ap-table" role="region" aria-labelledby="ap-titre" tabindex="0">
-          <table>
-            <thead><tr><th scope="col">Échéance estimée</th><th scope="col">Acheteur</th><th scope="col">Objet</th><th scope="col" class="num">Montant HT</th><th scope="col">Titulaire en place</th></tr></thead>
-            <tbody id="ap-lignes"></tbody>
+
+        <div class="demo" role="region" aria-label="Extrait du fichier : 8 marchés réels" tabindex="0">
+          <table class="demo-table">
+            <thead>
+              <tr>
+                <th scope="col">Échéance estimée</th>
+                <th scope="col">Acheteur</th>
+                <th scope="col">Objet du marché</th>
+                <th scope="col" class="num">Montant HT</th>
+                <th scope="col">Titulaire actuel</th>
+                <th scope="col">Fiabilité</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-l="Échéance estimée" class="date">mars 2027</td>
+                <td data-l="Acheteur" class="buyer">Établissement public de la Réunion des musées nationaux et du Grand Palais <small>Paris 12e</small></td>
+                <td data-l="Objet">Accueil et contrôle des entrées lors des événements</td>
+                <td data-l="Montant HT" class="num">216 000 €</td>
+                <td data-l="Titulaire actuel" class="holder">City One</td>
+                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+              </tr>
+              <tr>
+                <td data-l="Échéance estimée" class="date">avr. 2027</td>
+                <td data-l="Acheteur" class="buyer">Centre hospitalier de Valenciennes <small>Valenciennes</small></td>
+                <td data-l="Objet">Collecte, transport et élimination des déchets de verre (lot 13)</td>
+                <td data-l="Montant HT" class="num">240 000 €</td>
+                <td data-l="Titulaire actuel" class="holder">Environnement Services</td>
+                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+              </tr>
+              <tr>
+                <td data-l="Échéance estimée" class="date">avr. 2027</td>
+                <td data-l="Acheteur" class="buyer">Préfecture de région Nouvelle-Aquitaine <small>Bordeaux</small></td>
+                <td data-l="Objet">Surveillance humaine et sécurité incendie (lot 3)</td>
+                <td data-l="Montant HT" class="num">820 000 €</td>
+                <td data-l="Titulaire actuel" class="holder">Lynx Sécurité</td>
+                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+              </tr>
+              <tr>
+                <td data-l="Échéance estimée" class="date">avr. 2027</td>
+                <td data-l="Acheteur" class="buyer">Inolya <small>Caen</small></td>
+                <td data-l="Objet">Entretien des ascenseurs (lot 4, Pays d’Auge)</td>
+                <td data-l="Montant HT" class="num">208 160 €</td>
+                <td data-l="Titulaire actuel" class="holder">Orona Ouest Nord</td>
+                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+              </tr>
+              <tr>
+                <td data-l="Échéance estimée" class="date">juin 2027</td>
+                <td data-l="Acheteur" class="buyer">Commune de Marcq-en-Barœul <small>Marcq-en-Barœul</small></td>
+                <td data-l="Objet">Ouverture et fermeture des cimetières (lot 1)</td>
+                <td data-l="Montant HT" class="num">100 000 €</td>
+                <td data-l="Titulaire actuel" class="holder">Securitas France</td>
+                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+              </tr>
+              <tr>
+                <td data-l="Échéance estimée" class="date">juil. 2027</td>
+                <td data-l="Acheteur" class="buyer">Antin Résidences (SA HLM) <small>Paris 9e</small></td>
+                <td data-l="Objet">Nettoyage des locaux et bâtiments administratifs</td>
+                <td data-l="Montant HT" class="num">1 444 639 €</td>
+                <td data-l="Titulaire actuel" class="holder">Essi</td>
+                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+              </tr>
+              <tr>
+                <td data-l="Échéance estimée" class="date">août 2027</td>
+                <td data-l="Acheteur" class="buyer">Grand Besançon Métropole <small>Besançon</small></td>
+                <td data-l="Objet">Maintenance et entretien de l’éclairage public périurbain</td>
+                <td data-l="Montant HT" class="num">255 000 €</td>
+                <td data-l="Titulaire actuel" class="holder">SPIE Citynetworks</td>
+                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+              </tr>
+              <tr>
+                <td data-l="Échéance estimée" class="date">sept. 2027</td>
+                <td data-l="Acheteur" class="buyer">Commune de Nantua <small>Nantua</small></td>
+                <td data-l="Objet">Exploitation et maintenance du chauffage et de l’eau chaude sanitaire</td>
+                <td data-l="Montant HT" class="num">987 048 €</td>
+                <td data-l="Titulaire actuel" class="holder">Dalkia</td>
+                <td data-l="Fiabilité"><span class="tag">Haute</span></td>
+              </tr>
+            </tbody>
           </table>
         </div>
-        <p class="ap-plus" id="ap-plus"></p>
-        <div class="ap-cta">
-          <a id="ap-acheter" href="https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" class="btn btn-dark btn-lg" rel="noopener"></a>
-          <a href="/echantillon_gratuit_radar.xlsx" download class="text-link">Ou l’échantillon gratuit de 50 marchés (Excel)</a>
+        <p class="demo-note">Le fichier complet donne aussi, pour chaque marché : SIRET et commune de l’acheteur, code CPV, procédure, date de notification, durée, SIRET et taille du titulaire, et les 3 entreprises qui gagnent le plus de marchés similaires dans le département.</p>
+
+        <div class="cta-row">
+          <a href="#votre-apercu" class="btn btn-buy btn-lg justify-center">Voir les marchés de mon secteur</a>
+          <a href="/echantillon_gratuit_radar.xlsx" download class="text-link">Télécharger l’exemple complet (50 marchés, Excel)</a>
         </div>
-        <p class="ap-garantie"><strong>Satisfait ou remboursé pendant 14 jours.</strong> Si le fichier ne vous sert pas, un e-mail suffit : vous êtes remboursé intégralement, sans justification.</p>
-        <p class="fine-print">Fichier envoyé par e-mail après le paiement, sans autre démarche. Une question avant d’acheter ? Répondez simplement à notre e-mail ou écrivez à <a href="mailto:wael.benhallam@gmail.com" class="underline">wael.benhallam@gmail.com</a>.</p>
       </div>
     </section>
 
-    <!-- ═════════════ CONTENU DU FICHIER ═════════════ -->
-    <section id="contenu-fichier" class="section">
+    <!-- ═════════════ APERÇU GRATUIT PERSONNALISÉ (aussi lien ?f=&r= des e-mails) ═════════════ -->
+    <section id="votre-apercu" class="section apercu">
       <div class="wrap">
         <div class="section-head">
-          <p class="section-label">Le fichier<span>Une ligne par marché</span></p>
+          <p class="section-label">Aperçu gratuit<span id="ap-zone">5 marchés de votre secteur, dans votre région</span></p>
           <div>
-            <h2 class="h2">Qui achète, qui tient le marché, et quand il se termine.</h2>
-            <p class="section-intro">Le fichier se lit et se filtre dans Excel. Chaque ligne décrit un marché dont la fin est estimée dans 4 à 10 mois, le délai utile pour prendre contact avec l’acheteur avant la nouvelle consultation.</p>
+            <h2 class="h2" id="ap-titre">Combien de marchés arrivent à échéance près de chez vous ?</h2>
+            <p class="section-intro">Choisissez votre secteur et votre région : vous voyez tout de suite 5 marchés réels et le nombre total disponible dans le fichier.</p>
           </div>
         </div>
 
-        <ol class="steps">
-          <li class="step">
-            <span class="step-num">01</span>
-            <h3 class="step-title">Le marché</h3>
-            <p class="step-time">Objet, montant, échéance</p>
-            <p class="step-text">Acheteur public et sa commune, objet, code CPV, montant attribué HT, procédure, date de notification, durée et échéance estimée, avec un indice de fiabilité.</p>
-          </li>
-          <li class="step">
-            <span class="step-num">02</span>
-            <h3 class="step-title">Le titulaire en place</h3>
-            <p class="step-time">Nom, SIRET, taille</p>
-            <p class="step-text">L’entreprise qui détient aujourd’hui le marché, son SIRET, sa catégorie (PME, ETI, grande entreprise) et sa commune.</p>
-          </li>
-          <li class="step">
-            <span class="step-num">03</span>
-            <h3 class="step-title">Les concurrents locaux</h3>
-            <p class="step-time">Sur 4 ans, même département</p>
-            <p class="step-text">Les trois entreprises qui ont gagné le plus de marchés du même type dans le département, pour savoir face à qui vous répondrez.</p>
-          </li>
-        </ol>
+        <form class="ap-choix" id="ap-choix" aria-label="Choisir un secteur et une région">
+          <label><span>Secteur</span>
+            <select id="ap-f" class="sel-f">
+              <option value="79">Services aux entreprises (sécurité, intérim, conseil, communication)</option>
+              <option value="50">Réparation et maintenance</option>
+              <option value="90">Propreté, déchets, assainissement</option>
+            </select>
+          </label>
+          <label><span>Région</span>
+            <select id="ap-r" class="sel-r"><option value="ile-de-france">Île-de-France</option></select>
+          </label>
+          <button type="submit" class="btn btn-buy btn-lg justify-center">Obtenir mon aperçu gratuit</button>
+        </form>
+
+        <div id="ap-resultat" class="ap-resultat" aria-live="polite">
+          <p class="ap-compte" id="ap-intro"></p>
+          <div class="demo" role="region" aria-label="Aperçu : 5 marchés de votre secteur et de votre région" tabindex="0">
+            <table class="demo-table">
+              <thead><tr><th scope="col">Échéance estimée</th><th scope="col">Acheteur</th><th scope="col">Objet du marché</th><th scope="col" class="num">Montant HT</th><th scope="col">Titulaire actuel</th></tr></thead>
+              <tbody id="ap-lignes"></tbody>
+            </table>
+          </div>
+          <p class="ap-erreur" id="ap-erreur" hidden>L’aperçu n’a pas pu se charger. Rechargez la page, ou <a href="/echantillon_gratuit_radar.xlsx" download class="underline">téléchargez l’exemple de 50 marchés</a>.</p>
+
+          <div class="buybox">
+            <div>
+              <p class="buybox-kicker">Le fichier complet</p>
+              <p class="buybox-title" id="ap-plus">Tous les marchés de votre secteur et de votre région</p>
+              <p class="buybox-sub">Avec les titulaires actuels, leurs SIRET et 3 concurrents locaux par marché.</p>
+            </div>
+            <div class="buybox-actions">
+              <a id="ap-acheter" href="https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" class="btn btn-buy btn-lg justify-center" rel="noopener">Acheter le fichier · 190 €</a>
+              <a id="ap-france" href="https://buy.stripe.com/aFadR92u22fSef9bFj5AQ01" class="text-link" rel="noopener">ou France entière · 490 €</a>
+              <p class="reassure">Paiement unique <span aria-hidden="true">·</span> 14 jours satisfait ou remboursé</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -206,51 +311,65 @@
     <section id="offres" class="section">
       <div class="wrap">
         <div class="section-head">
-          <p class="section-label">Offres<span>Paiement unique, sans abonnement</span></p>
+          <p class="section-label">Tarifs<span>Paiement unique, sans abonnement</span></p>
           <div>
-            <h2 class="h2">Deux formats, selon votre zone de chalandise.</h2>
-            <p class="section-intro">Trois secteurs au choix : services aux entreprises (sécurité, intérim, conseil, communication), réparation et maintenance, propreté, déchets et assainissement.</p>
+            <h2 class="h2">Votre fichier, livré par e-mail dès le paiement.</h2>
+            <p class="section-intro">Choisissez votre secteur et votre zone : c’est ce fichier précis qui vous est envoyé, en Excel et en CSV, sans autre démarche.</p>
           </div>
         </div>
 
+        <form class="ap-choix ap-choix-offres" aria-label="Choisir le fichier à acheter">
+          <label><span>Secteur</span>
+            <select class="sel-f">
+              <option value="79">Services aux entreprises (sécurité, intérim, conseil, communication)</option>
+              <option value="50">Réparation et maintenance</option>
+              <option value="90">Propreté, déchets, assainissement</option>
+            </select>
+          </label>
+          <label><span>Région (offre à 190 €)</span>
+            <select class="sel-r"><option value="ile-de-france">Île-de-France</option></select>
+          </label>
+        </form>
+
         <div class="offers offers-2">
-          <article class="offer">
+          <article class="offer offer-featured">
             <p class="offer-kicker">Régional</p>
             <h3 class="offer-title">1 secteur, 1 région</h3>
             <p class="offer-price">190 €</p>
-            <p class="offer-delay">Paiement unique</p>
+            <p class="offer-delay" data-offre="region">Tous les marchés du secteur dans la région choisie</p>
             <ul class="offer-list">
-              <li>Tous les marchés du secteur à échéance dans 4 à 10 mois dans la région choisie</li>
-              <li>Acheteur, titulaire en place, montant, échéance estimée</li>
-              <li>Trois concurrents locaux par marché</li>
+              <li>Fin de contrat estimée dans 4 à 10 mois</li>
+              <li>Acheteur, objet, montant HT, titulaire actuel</li>
+              <li>Indice de fiabilité et 3 concurrents locaux</li>
               <li>Fichiers Excel et CSV</li>
             </ul>
-            <a href="https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" class="btn btn-line w-full justify-center" rel="noopener">Acheter pour 190 €</a>
+            <a href="https://buy.stripe.com/cNi28r0lU07K8UPgZD5AQ00" class="btn btn-buy btn-lg w-full justify-center" rel="noopener" data-achat="region">Acheter · 190 €</a>
+            <p class="reassure">Paiement unique · 14 jours satisfait ou remboursé</p>
           </article>
 
-          <article class="offer offer-featured">
-            <p class="offer-flag">Couverture nationale</p>
+          <article class="offer">
             <p class="offer-kicker">National</p>
             <h3 class="offer-title">1 secteur, France entière</h3>
             <p class="offer-price">490 €</p>
-            <p class="offer-delay">Paiement unique</p>
+            <p class="offer-delay" data-offre="france">3 100 à 4 400 marchés selon le secteur</p>
             <ul class="offer-list">
-              <li>Tous les marchés du secteur à échéance dans 4 à 10 mois, toutes régions</li>
-              <li>3 100 à 4 400 marchés selon le secteur</li>
-              <li>Acheteur, titulaire en place, montant, échéance estimée, concurrents locaux</li>
+              <li>Fin de contrat estimée dans 4 à 10 mois, toutes régions</li>
+              <li>Acheteur, objet, montant HT, titulaire actuel</li>
+              <li>Indice de fiabilité et 3 concurrents locaux</li>
               <li>Fichiers Excel et CSV</li>
             </ul>
-            <a href="https://buy.stripe.com/aFadR92u22fSef9bFj5AQ01" class="btn btn-dark w-full justify-center" rel="noopener">Acheter pour 490 €</a>
+            <a href="https://buy.stripe.com/aFadR92u22fSef9bFj5AQ01" class="btn btn-dark btn-lg w-full justify-center" rel="noopener" data-achat="france">Acheter · 490 €</a>
+            <p class="reassure">Paiement unique · 14 jours satisfait ou remboursé</p>
           </article>
         </div>
 
         <div class="roi">
-          <p><strong>Un seul marché gagné rembourse le fichier des centaines de fois.</strong> Le montant médian des marchés du Radar est de 167 000 à 200 000 € HT selon le secteur, pour un fichier à 190 €.</p>
-          <p><strong>Satisfait ou remboursé pendant 14 jours</strong>, sur simple e-mail, sans justification.</p>
-          <p><strong>Plusieurs régions ou plusieurs clients ?</strong> 3 fichiers pour le prix de 2, par exemple 3 régions pour 380 € au lieu de 570 €. Écrivez à <a href="mailto:wael.benhallam@gmail.com?subject=Radar%20%E2%80%94%203%20fichiers%20pour%20le%20prix%20de%202" class="underline">wael.benhallam@gmail.com</a> en indiquant les secteurs et régions : vous recevez un lien de paiement unique.</p>
+          <p><strong>Pour comparer :</strong> le montant médian d’un marché du Radar est de 167 000 à 200 000 € HT selon le secteur.</p>
+          <p><strong>Satisfait ou remboursé 14 jours</strong>, sur simple e-mail, sans justification.</p>
+          <p><strong>Plusieurs régions ou plusieurs clients ?</strong> 3 fichiers pour le prix de 2 (ex. 3 régions pour 380 € au lieu de 570 €). Écrivez à <a href="mailto:radar@bistouri-radar.fr?subject=Radar%20%E2%80%94%203%20fichiers%20pour%20le%20prix%20de%202" class="underline">radar@bistouri-radar.fr</a> avec vos secteurs et régions.</p>
         </div>
 
-        <p class="fine-print">Paiement sécurisé par Stripe. Choisissez votre secteur et votre région <a href="#votre-apercu" class="underline">dans l’aperçu</a> avant de payer : le bon fichier vous est envoyé automatiquement. Sinon, indiquez-les à <a href="mailto:wael.benhallam@gmail.com?subject=Radar%20%E2%80%94%20secteur%20et%20r%C3%A9gion" class="underline">wael.benhallam@gmail.com</a> : le fichier vous est envoyé par e-mail sous 24 h ouvrées. TVA non applicable, art. 293 B du CGI.</p>
+        <p class="fine-print">Paiement sécurisé par Stripe. Facture fournie. TVA non applicable, art. 293 B du CGI.</p>
       </div>
     </section>
 
@@ -260,7 +379,8 @@
         <div class="section-head">
           <p class="section-label">Méthode<span>Ce que le fichier dit, et ne dit pas</span></p>
           <div>
-            <h2 class="h2">Des données officielles, nettoyées et datées.</h2>
+            <h2 class="h2">Des données publiques officielles, nettoyées et datées.</h2>
+            <p class="section-intro">Données actualisées le 15 novembre 2026, à partir de la base nationale consolidée.</p>
           </div>
         </div>
 
@@ -269,21 +389,23 @@
             <span class="step-num">01</span>
             <h3 class="step-title">Source publique</h3>
             <p class="step-time">DECP, data.gouv.fr</p>
-            <p class="step-text">Les acheteurs publics déclarent les données essentielles de leurs marchés. Nous partons de la base consolidée publiée sur data.gouv.fr : 1,9 million de marchés.</p>
+            <p class="step-text">Les acheteurs publics sont tenus de publier les données essentielles de leurs marchés. Nous partons de la base consolidée sur data.gouv.fr (Licence Ouverte 2.0).</p>
           </li>
           <li class="step">
             <span class="step-num">02</span>
             <h3 class="step-title">Nettoyage</h3>
             <p class="step-time">1,74 million de marchés retenus</p>
-            <p class="step-text">Montants fictifs ou aberrants, durées incohérentes, titulaires absents et codes CPV invalides sont écartés avant tout calcul.</p>
+            <p class="step-text">Montants aberrants, durées incohérentes, titulaires absents et codes CPV invalides sont écartés.</p>
           </li>
           <li class="step">
             <span class="step-num">03</span>
             <h3 class="step-title">Échéance estimée</h3>
-            <p class="step-time">Notification + durée</p>
-            <p class="step-text">L’échéance est une estimation, pas une date contractuelle : reconductions et avenants peuvent la décaler. Pour un accord-cadre, le montant indiqué est souvent un plafond.</p>
+            <p class="step-time">Notification + durée déclarée</p>
+            <p class="step-text">Fiabilité « Haute » quand la durée est standard (12, 24, 36, 48 ou 60 mois), « Estimée » sinon.</p>
           </li>
         </ol>
+
+        <p class="avertissement"><strong>À savoir :</strong> l’échéance est une estimation, pas une date contractuelle. Une reconduction, un avenant ou un regroupement peut la décaler, et rien ne garantit que l’acheteur relancera une consultation. Pour un accord-cadre, le montant indiqué est souvent un plafond.</p>
       </div>
     </section>
 
@@ -293,34 +415,38 @@
         <div class="section-head">
           <p class="section-label">Questions<span>Avant d’acheter</span></p>
           <div>
-            <h2 class="h2">Ce qu’on nous demande le plus.</h2>
+            <h2 class="h2">Les réponses courtes.</h2>
           </div>
         </div>
         <div class="faq">
           <details>
-            <summary>Les appels d’offres sont déjà publics sur le BOAMP. Qu’apporte le Radar ?</summary>
-            <p>Le BOAMP et les plateformes de veille publient l’appel d’offres le jour où il sort : il reste alors 30 à 45 jours pour répondre, et le cahier des charges est déjà écrit. Le Radar vous signale le marché 4 à 10 mois avant, quand l’acheteur prépare encore son besoin. C’est le moment où une rencontre ou une demande d’information compte.</p>
+            <summary>Que contient le Radar ?</summary>
+            <p>Les marchés publics de votre secteur dont la fin est estimée dans 4 à 10 mois : qui achète, quoi, pour combien, qui tient le marché aujourd’hui, et quand il devrait se terminer. Avec 3 concurrents locaux par marché.</p>
           </details>
           <details>
-            <summary>J’ai déjà un abonnement de veille. Est-ce la même chose ?</summary>
-            <p>Non, et les deux se complètent. Une veille vous alerte sur les consultations publiées. Le Radar part des marchés déjà attribués et calcule leur date de fin : il annonce les consultations à venir, avec le nom du titulaire en place que vous aurez en face.</p>
+            <summary>Quelle est la différence avec le BOAMP ?</summary>
+            <p>Le BOAMP publie l’appel d’offres une fois lancé : il reste alors souvent quelques semaines pour répondre, et le cahier des charges est écrit. Le Radar vous signale les contrats en cours plusieurs mois avant, pour vous faire connaître de l’acheteur pendant qu’il prépare son besoin.</p>
           </details>
           <details>
-            <summary>Quelle est la fiabilité de la date d’échéance ?</summary>
-            <p>C’est une estimation : date de notification plus durée déclarée par l’acheteur. Chaque ligne porte un indice de fiabilité. Les reconductions et avenants peuvent décaler la date ; c’est pourquoi le fichier couvre une fenêtre de 4 à 10 mois plutôt qu’une date au jour près.</p>
+            <summary>Les dates sont-elles fiables ?</summary>
+            <p>Ce sont des estimations, calculées à partir des données déclarées par l’acheteur, avec un indice de fiabilité sur chaque ligne. Une reconduction ou un avenant peut décaler la date, et un renouvellement n’est jamais garanti. C’est pourquoi le Radar couvre une fenêtre de 4 à 10 mois.</p>
           </details>
           <details>
-            <summary>Comment est-ce que je reçois le fichier ?</summary>
-            <p>Par e-mail, en Excel et CSV, après le paiement. Si vous avez choisi votre secteur et votre région dans l’aperçu, l’envoi est automatique ; sinon, il suffit de répondre au reçu Stripe en les indiquant.</p>
+            <summary>Comment utiliser ces informations ?</summary>
+            <p>Filtrez par département et montant, puis contactez les acheteurs ciblés : présentation de votre entreprise, demande de rendez-vous, veille sur leur profil acheteur. Vous savez aussi qui est le titulaire actuel que vous aurez en face.</p>
           </details>
           <details>
-            <summary>Et si le fichier ne me sert pas ?</summary>
-            <p>Vous êtes remboursé intégralement pendant 14 jours, sur simple e-mail à <a href="mailto:wael.benhallam@gmail.com" class="underline">wael.benhallam@gmail.com</a>, sans justification.</p>
+            <summary>Comment recevoir mon fichier ?</summary>
+            <p>Choisissez votre secteur et votre région sur cette page, puis payez. Le fichier correspondant (Excel et CSV) vous est envoyé automatiquement par e-mail, en général dans les 2 heures. Rien d’autre à faire.</p>
           </details>
           <details>
-            <summary>Faut-il un abonnement ?</summary>
-            <p>Non. Paiement unique, facture fournie. Les données sont celles de novembre 2026 ; vous pourrez racheter une édition plus récente si vous le souhaitez, rien n’est reconduit automatiquement.</p>
+            <summary>Et si le fichier ne me convient pas ?</summary>
+            <p>Vous êtes remboursé intégralement pendant 14 jours, sur simple e-mail à <a href="mailto:radar@bistouri-radar.fr" class="underline">radar@bistouri-radar.fr</a>, sans justification.</p>
           </details>
+        </div>
+        <div class="cta-row">
+          <a href="#votre-apercu" class="btn btn-buy btn-lg justify-center">Obtenir mon aperçu gratuit</a>
+          <a href="#offres" class="text-link">Voir les tarifs</a>
         </div>
       </div>
     </section>
@@ -329,12 +455,12 @@
     <section id="echantillon" class="closing">
       <div class="wrap grid gap-10 lg:grid-cols-12">
         <div class="lg:col-span-8">
-          <p class="closing-label">Échantillon gratuit, sans inscription</p>
-          <h2 class="closing-title">Jugez sur pièces : 50&nbsp;vrais marchés à échéance.</h2>
+          <p class="closing-label">Paiement unique · 14 jours satisfait ou remboursé</p>
+          <p class="closing-title">Préparez vos prochains rendez-vous acheteurs dès aujourd’hui.</p>
         </div>
         <div class="flex flex-col justify-end gap-3 lg:col-span-4">
-          <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-light btn-lg justify-center">Télécharger l’échantillon (Excel) →</a>
-          <a href="#offres" class="btn btn-outline-light btn-lg justify-center">Voir les offres</a>
+          <a href="#votre-apercu" class="btn btn-light btn-lg justify-center">Découvrir les marchés disponibles</a>
+          <a href="/echantillon_gratuit_radar.xlsx" download class="btn btn-outline-light btn-lg justify-center">Télécharger l’exemple gratuit</a>
         </div>
       </div>
     </section>
@@ -346,10 +472,10 @@
       <p>
         © <span id="year">2026</span> Bistouri — Waël Benhallam, entrepreneur individuel (micro-entreprise), Paris.<br>
         SIREN 935 246 801 · SIRET 935 246 801 00010 · TVA non applicable, art. 293 B du CGI.<br>
-        Hébergement : Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis.
+        Données : DECP, data.gouv.fr, Licence Ouverte 2.0 · Hébergement : Vercel Inc., Covina, CA, États-Unis.
       </p>
       <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
-        <a href="mailto:wael.benhallam@gmail.com">wael.benhallam@gmail.com</a>
+        <a href="mailto:radar@bistouri-radar.fr">radar@bistouri-radar.fr</a>
         <button type="button" id="open-legal" aria-haspopup="dialog">Mentions légales</button>
       </div>
     </div>
@@ -375,7 +501,7 @@
           <dt>SIREN</dt><dd class="font-mono">935 246 801</dd>
           <dt>SIRET</dt><dd class="font-mono">935 246 801 00010</dd>
           <dt>TVA</dt><dd>TVA non applicable, art. 293 B du CGI</dd>
-          <dt>Contact</dt><dd><a href="mailto:wael.benhallam@gmail.com">wael.benhallam@gmail.com</a></dd>
+          <dt>Contact</dt><dd><a href="mailto:radar@bistouri-radar.fr">radar@bistouri-radar.fr</a></dd>
           <dt>Directeur de la publication</dt><dd>Waël Benhallam</dd>
         </dl>
 
@@ -390,18 +516,18 @@
         <p>Le Radar est établi à partir des données essentielles de la commande publique (DECP) publiées sur data.gouv.fr sous Licence Ouverte 2.0, dans leur version consolidée de novembre 2026. Les données ont été filtrées et enrichies d’une échéance estimée ; elles ne sont pas garanties exhaustives ni exemptes d’erreurs de déclaration.</p>
 
         <h3>Vente</h3>
-        <p>Les fichiers sont vendus à des professionnels, en paiement unique traité par Stripe, et livrés par e-mail après le paiement (sous 24 h ouvrées au plus si le secteur et la région restent à préciser). Garantie satisfait ou remboursé : tout achat est remboursé intégralement sur simple demande par e-mail dans les 14 jours qui suivent le paiement. Les échéances sont des estimations et ne constituent pas un engagement sur la date ni sur la tenue d’une nouvelle consultation.</p>
+        <p>Les fichiers sont vendus à des professionnels, en paiement unique traité par Stripe, et livrés automatiquement par e-mail après le paiement, selon le secteur et la zone choisis sur le site. Garantie satisfait ou remboursé : tout achat est remboursé intégralement sur simple demande par e-mail dans les 14 jours qui suivent le paiement. Les échéances sont des estimations et ne constituent pas un engagement sur la date ni sur la tenue d’une nouvelle consultation.</p>
 
         <h3>Données personnelles (RGPD)</h3>
         <p>Ce site ne collecte aucune donnée par formulaire. Les informations transmises lors d’un achat (via Stripe) ou d’un échange par e-mail servent uniquement à livrer le fichier et à répondre à votre demande. Elles ne sont jamais revendues.</p>
-        <p>Si vous avez reçu un e-mail de notre part, votre adresse professionnelle générique a été relevée sur le site public de votre entreprise. Vous pouvez vous y opposer à tout moment en répondant STOP à cet e-mail, ou en écrivant à <a href="mailto:wael.benhallam@gmail.com">wael.benhallam@gmail.com</a>. Vous disposez d’un droit d’accès, de rectification, d’effacement et d’opposition, et pouvez introduire une réclamation auprès de la CNIL.</p>
+        <p>Si vous avez reçu un e-mail de notre part, votre adresse professionnelle générique a été relevée sur le site public de votre entreprise. Vous pouvez vous y opposer à tout moment en répondant STOP à cet e-mail, ou en écrivant à <a href="mailto:radar@bistouri-radar.fr">radar@bistouri-radar.fr</a>. Vous disposez d’un droit d’accès, de rectification, d’effacement et d’opposition, et pouvez introduire une réclamation auprès de la CNIL.</p>
 
         <h3>Cookies</h3>
-        <p>Ce site n’utilise aucun cookie. Lorsqu’une visite provient d’un de nos e-mails, un compteur anonyme enregistre uniquement la version de l’e-mail concernée, sans adresse IP ni identifiant. Les polices sont chargées depuis Google Fonts.</p>
+        <p>Ce site n’utilise aucun cookie. Lorsqu’une visite provient d’un de nos e-mails, un compteur anonyme enregistre uniquement la version de l’e-mail concernée, sans adresse IP ni identifiant. Votre choix de secteur et de région est gardé le temps de la visite dans votre navigateur, pour l’afficher sur la page de confirmation. Les polices sont chargées depuis Google Fonts.</p>
       </div>
     </div>
   </dialog>
 
-  <script src="radar.js?v=3" defer></script>
+  <script src="radar.js?v=4" defer></script>
 </body>
 </html>

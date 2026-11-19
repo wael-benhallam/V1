@@ -4,6 +4,7 @@
 @source "../index.html";
 @source "../app.js";
 @source "../radar.js";
+@source "../merci.html";
 
 @theme {
   --color-paper: #FAFAFA;

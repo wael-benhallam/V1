@@ -7,7 +7,8 @@ Site vitrine statique : Radar des marchés publics arrivant à échéance (DECP)
 | Fichier | Rôle |
 |---|---|
 | `index.html` | Page unique du Radar (promesse, échantillon, offres Stripe, mentions légales) |
-| `radar.js` | Interactions de la page Radar : menu mobile, mentions légales |
+| `radar.js` | Interactions : menu mobile, aperçu gratuit secteur × région, choix transmis à Stripe (`client_reference_id`), mentions légales |
+| `merci.html` | Confirmation de commande (`/merci`), à régler comme redirection après paiement dans les deux liens Stripe |
 | `echantillon_gratuit_radar.xlsx` | Échantillon gratuit de 50 marchés, servi à la racine |
 | `config.js` | **Toutes les valeurs modifiables** : marque, email, Cal.com, newsletter Buttondown, mentions légales |
 | `styles.css` | Styles du site |

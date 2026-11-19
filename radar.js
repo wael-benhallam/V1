@@ -31,7 +31,7 @@
           if (en.isIntersecting) links.forEach((l) => l.classList.toggle("is-active", l.getAttribute("href") === `#${en.target.id}`));
         });
       }, { rootMargin: "-45% 0px -50% 0px" });
-      ["contenu-fichier", "offres", "methode"].forEach((id) => { const s = document.getElementById(id); if (s) io.observe(s); });
+      ["exemple", "votre-apercu", "offres", "methode", "questions"].forEach((id) => { const s = document.getElementById(id); if (s) io.observe(s); });
     }
   }
 
@@ -58,17 +58,6 @@
     return { v: ok(q.get("v"), /^[1-9]\d{0,2}$/), f: ok(q.get("f"), /^\d{2}$/), r: ok(q.get("r"), /^[a-z][a-z-]{1,40}$/) };
   }
 
-  function marquerPaiements(l) {
-    if (!l.v && !l.f) return;
-    $$('a[href^="https://buy.stripe.com/"]').forEach((a) => {
-      const u = new URL(a.href);
-      const parts = ["v" + (l.v || "0")];
-      if (l.f) parts.push(l.f, a.href.includes(STRIPE_FRANCE) ? "france" : (l.r || ""));
-      u.searchParams.set("client_reference_id", parts.filter(Boolean).join("_"));
-      a.href = u.toString();
-    });
-  }
-
   function setupVariante(l) {
     if (!l.v) return;
     try {
@@ -86,80 +75,124 @@
   const cell = (txt, cls) => { const td = document.createElement("td"); td.textContent = txt; if (cls) td.className = cls; return td; };
 
   // Aperçu secteur × région : choisi par le visiteur, ou pré-rempli par le lien des e-mails (?f=&r=).
-  const ap = { index: null, l: null };
+  // Les menus de l'aperçu et ceux des tarifs (.sel-f / .sel-r) restent synchronisés, et le choix
+  // part jusqu'au paiement Stripe : client_reference_id = v<variante>_<famille>_<région|france>.
+  const AP_LIGNES = 5;
+  const ap = { index: null, l: null, f: "79", r: "ile-de-france" };
+  const zoneDe = (f, r) => (ap.index && ap.index[f + "_" + r] ? ap.index[f + "_" + r].zone : "");
+  // la région facturée à 190 € : celle de l'aperçu, ou celle du menu des tarifs si l'aperçu est sur « France »
+  const regionAchat = () => (ap.r !== "france" ? ap.r : ($(".ap-choix-offres .sel-r") || {}).value || "ile-de-france");
 
-  function majAchats(f, r) {
-    const parts = ["v" + (ap.l.v || "0"), f];
+  function majAchats() {
+    const base = ["v" + (ap.l.v || "0"), ap.f];
     $$('a[href^="https://buy.stripe.com/"]').forEach((a) => {
       const u = new URL(a.href);
       const france = a.href.includes(STRIPE_FRANCE);
-      u.searchParams.set("client_reference_id", parts.concat(france ? "france" : r).join("_"));
+      u.searchParams.set("client_reference_id", base.concat(france ? "france" : regionAchat()).join("_"));
       a.href = u.toString();
+    });
+    const lib = ap.index[ap.f + "_france"].libelle;
+    const reg = ap.index[ap.f + "_" + regionAchat()];
+    $$('[data-achat="region"]').forEach((a) => { a.textContent = "Acheter " + reg.zone + " · 190 €"; });
+    $$('[data-offre="region"]').forEach((p) => { p.textContent = nf.format(reg.marches) + " marchés · " + lib + " · " + reg.zone; });
+    $$('[data-offre="france"]').forEach((p) => { p.textContent = nf.format(ap.index[ap.f + "_france"].marches) + " marchés · " + lib + " · toutes régions"; });
+  }
+
+  // Mémorise le choix au clic sur un bouton d'achat, pour la page de confirmation (/merci).
+  function suivreAchats() {
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest('a[href^="https://buy.stripe.com/"]');
+      if (!a || !ap.index) return;
+      const france = a.href.includes(STRIPE_FRANCE);
+      const choix = { libelle: ap.index[ap.f + "_france"].libelle, zone: france ? "France entière" : zoneDe(ap.f, regionAchat()), prix: france ? 490 : 190 };
+      try { sessionStorage.setItem("radar-achat", JSON.stringify(choix)); } catch (err) { /* sans stockage : confirmation générique */ }
     });
   }
 
-  async function afficher(f, r) {
+  async function afficher() {
+    const f = ap.f, r = ap.r;
+    majAchats();
     let d;
     try {
       const res = await fetch("/apercu/" + f + "_" + r + ".json");
-      if (!res.ok) return;
+      if (!res.ok) throw new Error(String(res.status));
       d = await res.json();
-    } catch (e) { return; }
-    const enZone = d.zone === "France entière" ? "en France" : "en " + d.zone;
+    } catch (e) { $("#ap-erreur").hidden = false; return; }
+    if (f !== ap.f || r !== ap.r) return; // un autre choix a été fait entre-temps
+    $("#ap-erreur").hidden = true;
+    const france = d.zone === "France entière";
+    const enZone = france ? "en France" : "en " + d.zone;
+    const n = Math.min(AP_LIGNES, d.lignes.length);
     $("#ap-zone").textContent = d.libelle + " · " + d.zone;
-    $("#ap-titre").textContent = nf.format(d.marches) + " marchés publics (" + d.libelle.toLowerCase() + ") à renouveler " + enZone + ".";
-    $("#ap-intro").textContent = "Leur fin est estimée dans 4 à 10 mois, pour " + nf.format(Math.round(d.montant_total_meur)) +
-      " M€ attribués au total. Voici les plus proches. Le fichier complet donne aussi le titulaire en place, son SIRET et trois concurrents locaux pour chaque marché.";
+    $("#ap-titre").textContent = nf.format(d.marches) + " marchés publics à échéance " + enZone + " (" + d.libelle.toLowerCase() + ").";
+    $("#ap-intro").textContent = "Voici " + n + " d’entre eux, parmi les plus proches. Fin estimée dans 4 à 10 mois, " +
+      nf.format(Math.round(d.montant_total_meur)) + " M€ HT attribués au total.";
     const tb = $("#ap-lignes");
     tb.replaceChildren();
-    d.lignes.forEach((x) => {
+    d.lignes.slice(0, AP_LIGNES).forEach((x) => {
       const tr = document.createElement("tr");
-      tr.append(cell(mois(x.echeance), "date"), cell(x.acheteur), cell(x.objet),
-        cell(x.montant ? nf.format(x.montant) + " €" : "—", "num"), cell("dans le fichier", "ap-masque"));
+      const c = [cell(mois(x.echeance), "date"), cell(x.acheteur, "buyer"), cell(x.objet),
+        cell(x.montant ? nf.format(x.montant) + " €" : "—", "num"), cell("dans le fichier complet", "ap-masque")];
+      ["Échéance estimée", "Acheteur", "Objet", "Montant HT", "Titulaire actuel"].forEach((l, i) => { c[i].dataset.l = l; });
+      tr.append(...c);
       tb.append(tr);
     });
-    const reste = d.marches - d.lignes.length;
-    $("#ap-plus").textContent = reste > 0 ? "+ " + nf.format(reste) + " autres marchés dans le fichier." : "";
+    const reste = d.marches - n;
+    $("#ap-plus").textContent = "Les " + nf.format(d.marches) + " marchés " + enZone + (reste > 0 ? ", dont " + nf.format(reste) + " que vous n’avez pas encore vus" : "") + ".";
     const achat = $("#ap-acheter");
-    achat.href = "https://buy.stripe.com/" + (d.zone === "France entière" ? STRIPE_FRANCE : STRIPE_REGION);
-    achat.textContent = d.zone === "France entière" ? "Recevoir le fichier France entière · 490 €"
-      : "Recevoir le fichier " + d.zone + " · 190 €";
-    majAchats(f, r);
+    achat.textContent = france ? "Acheter le fichier France entière · 490 €" : "Acheter le fichier " + d.zone + " · 190 €";
+    achat.href = "https://buy.stripe.com/" + (france ? STRIPE_FRANCE : STRIPE_REGION);
+    $("#ap-france").hidden = france;
+    majAchats();
   }
 
   function remplirRegions(f, r) {
-    const sel = $("#ap-r");
     const regions = Object.keys(ap.index).filter((k) => k.startsWith(f + "_"))
       .map((k) => ({ r: k.slice(3), zone: ap.index[k].zone, n: ap.index[k].marches }))
       .sort((a, b) => (a.r === "france") - (b.r === "france") || a.zone.localeCompare(b.zone, "fr"));
-    sel.replaceChildren(...regions.map((x) => {
-      const o = document.createElement("option");
-      o.value = x.r;
-      o.textContent = x.zone + " (" + nf.format(x.n) + " marchés)";
-      return o;
-    }));
-    sel.value = regions.some((x) => x.r === r) ? r : (regions.some((x) => x.r === "ile-de-france") ? "ile-de-france" : regions[0].r);
-    return sel.value;
+    const has = (v) => regions.some((x) => x.r === v);
+    const val = has(r) ? r : (has("ile-de-france") ? "ile-de-france" : regions[0].r);
+    $$(".sel-r").forEach((sel) => {
+      const tarifs = !sel.id; // le menu des tarifs ne propose que les régions (France = offre à 490 €)
+      const avant = sel.value;
+      sel.replaceChildren(...regions.filter((x) => !(tarifs && x.r === "france")).map((x) => {
+        const o = document.createElement("option");
+        o.value = x.r;
+        o.textContent = x.zone + " (" + nf.format(x.n) + " marchés)";
+        return o;
+      }));
+      sel.value = !tarifs || val !== "france" ? val : (has(avant) && avant !== "france" ? avant : "ile-de-france");
+    });
+    return val;
+  }
+
+  function choisir(f, r) {
+    ap.f = f;
+    ap.r = remplirRegions(f, r);
+    $$(".sel-f").forEach((s) => { s.value = f; });
+    return afficher();
   }
 
   async function setupApercu(l) {
     ap.l = l;
+    suivreAchats();
     try {
       const res = await fetch("/apercu/index.json");
-      if (!res.ok) throw 0;
+      if (!res.ok) throw new Error(String(res.status));
       ap.index = await res.json();
-    } catch (e) { $("#votre-apercu").hidden = true; return; }
-    const fSel = $("#ap-f");
-    let f = l.f && ap.index[l.f + "_france"] ? l.f : "79";
-    fSel.value = f;
-    let r = remplirRegions(f, l.r);
-    fSel.addEventListener("change", () => { f = fSel.value; r = remplirRegions(f, r); afficher(f, r); });
-    $("#ap-r").addEventListener("change", (e) => { r = e.target.value; afficher(f, r); });
-    await afficher(f, r);
+    } catch (e) { $("#ap-erreur").hidden = false; return; }
+    $$(".sel-f").forEach((s) => s.addEventListener("change", () => choisir(s.value, ap.r)));
+    $$(".sel-r").forEach((s) => s.addEventListener("change", () => choisir(ap.f, s.value)));
+    $("#ap-choix").addEventListener("submit", (e) => {
+      e.preventDefault();
+      choisir($("#ap-f").value, $("#ap-r").value).then(() => $("#ap-resultat").scrollIntoView({ behavior: "smooth", block: "start" }));
+    });
+    const f = l.f && ap.index[l.f + "_france"] ? l.f : "79";
+    await choisir(f, l.r || "ile-de-france");
     if (l.f && l.r) {
-      const enZone = r === "france" ? "en France" : "en " + ap.index[f + "_" + r].zone;
+      const enZone = ap.r === "france" ? "en France" : "en " + zoneDe(ap.f, ap.r);
       const heroLien = $('.hero a[href="#votre-apercu"]');
-      if (heroLien) { heroLien.href = "#votre-apercu"; heroLien.textContent = "Voir vos marchés " + enZone + " ↓"; }
+      if (heroLien) heroLien.textContent = "Voir vos marchés " + enZone;
       // le prospect voit d'abord ses propres marchés, avant la présentation générale
       const sec = $("#votre-apercu");
       $("main").prepend(sec);

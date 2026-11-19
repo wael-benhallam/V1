@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Commande confirmée | Bistouri Radar</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FAFAFA">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tailwind.css">
+  <link rel="stylesheet" href="styles.css?v=4">
+</head>
+<body class="bg-paper text-ink font-sans antialiased">
+  <header class="site-header">
+    <div class="wrap flex h-16 items-center justify-between">
+      <a href="/" class="wordmark"><span class="wordmark-dot" aria-hidden="true"></span><span>Bistouri · Radar</span></a>
+    </div>
+  </header>
+
+  <main class="merci">
+    <div class="wrap merci-box">
+      <p class="availability"><span class="availability-mark" aria-hidden="true"></span>Paiement reçu</p>
+      <h1 class="h2 mt-6">Merci, votre commande est confirmée.</h1>
+      <p class="section-intro" id="merci-fichier">Votre fichier Radar (Excel et CSV) part automatiquement par e-mail, à l’adresse saisie lors du paiement.</p>
+
+      <ol class="merci-steps">
+        <li><strong>Reçu Stripe :</strong> envoyé tout de suite par e-mail.</li>
+        <li><strong>Votre fichier :</strong> envoyé depuis radar@bistouri-radar.fr, en général dans les 2 heures. Pensez à vérifier vos courriers indésirables.</li>
+        <li><strong>Rien reçu sous 24 h ?</strong> Écrivez à <a href="mailto:radar@bistouri-radar.fr?subject=Radar%20%E2%80%94%20fichier%20non%20re%C3%A7u" class="underline">radar@bistouri-radar.fr</a> : nous vous l’envoyons immédiatement.</li>
+        <li><strong>14 jours satisfait ou remboursé</strong>, sur simple e-mail, sans justification.</li>
+      </ol>
+
+      <div class="cta-row">
+        <a href="/" class="btn btn-line btn-lg justify-center">Retour au site</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      try {
+        var c = JSON.parse(sessionStorage.getItem("radar-achat") || "null");
+        if (c && c.libelle && c.zone) {
+          document.getElementById("merci-fichier").textContent =
+            "Votre fichier « " + c.libelle + " · " + c.zone + " » (Excel et CSV) part automatiquement par e-mail, à l’adresse saisie lors du paiement.";
+        }
+      } catch (e) { /* stockage indisponible : message générique */ }
+    })();
+  </script>
+</body>
+</html>

@@ -16,12 +16,12 @@ Google has not been told about it and nothing links to it yet.
 - Mobile: hero text and buttons ran into the right edge on phones (grid column sized to content). Fixed.
 - Schema: added Organization + WebSite; offers now say `InStock` and name the seller.
 - `robots.txt`: stopped blocking `/merci`. It already says `noindex`; blocking it hid that from Google.
-- `vercel.json`: `cleanUrls` so `/index.html` and `/merci.html` redirect to `/` and `/merci`.
+- Search Console: verification file `google161d1538581ac3cc.html` at the root (keep it there, or the property loses verification). No `cleanUrls`: it would redirect that file.
 - Sitemap `lastmod` updated.
 
 ## Search Console (you do this; it needs your Google account)
 
-1. https://search.google.com/search-console → Add property → **Domain** → `bistouri.app`.
+1. Done: URL-prefix property `https://www.bistouri.app/`, verified by HTML file.
 2. Google gives a `google-site-verification=…` TXT record. Add it in Vercel → Domains → bistouri.app → DNS
    (or at the registrar if DNS is not on Vercel). Click Verify.
 3. Sitemaps → submit `https://www.bistouri.app/sitemap.xml`.

@@ -2,10 +2,9 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
   "outputDirectory": ".",
-  "cleanUrls": true,
   "rewrites": [
-    { "source": "/radar", "destination": "/" },
-    { "source": "/merci", "destination": "/merci" }
+    { "source": "/radar", "destination": "/index.html" },
+    { "source": "/merci", "destination": "/merci.html" }
   ],
   "headers": [
     { "source": "/merci(.html)?", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }

@@ -102,7 +102,7 @@ mark { background: var(--mark); color: var(--ink); padding: 1px 5px; margin-inli
 /* ── Ouverture ──────────────────────────────────────────── */
 .hero { padding-block: 48px 64px; }
 @media (min-width: 1024px) { .hero { padding-block: 80px 96px; } }
-.hero-grid { display: grid; gap: 48px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
 @media (min-width: 1024px) { .hero-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; } .hero-main { grid-column: 1 / span 8; } .specimen { grid-column: 9 / span 4; margin-top: 136px; } }
 .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--forest); }
 .display { margin-top: 22px; font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 1.4rem + 4.6vw, 5.4rem); line-height: .98; letter-spacing: -0.03em; font-variation-settings: "opsz" 72; text-wrap: balance; }

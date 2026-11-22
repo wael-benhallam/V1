@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /merci
 
 Sitemap: https://www.bistouri.app/sitemap.xml

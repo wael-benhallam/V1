@@ -4,8 +4,8 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/radar", "destination": "/index.html" },
-    { "source": "/merci", "destination": "/merci.html" }
+    { "source": "/radar", "destination": "/" },
+    { "source": "/merci", "destination": "/merci" }
   ],
   "headers": [
     { "source": "/merci(.html)?", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }

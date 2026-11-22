@@ -21,9 +21,8 @@ Google has not been told about it and nothing links to it yet.
 
 ## Search Console (you do this; it needs your Google account)
 
-1. Done: URL-prefix property `https://www.bistouri.app/`, verified by HTML file.
-2. Google gives a `google-site-verification=…` TXT record. Add it in Vercel → Domains → bistouri.app → DNS
-   (or at the registrar if DNS is not on Vercel). Click Verify.
+1. URL-prefix property `https://www.bistouri.app/`, verified by the HTML file at the root (served since 22 Nov 2026).
+2. Click Verify in Search Console.
 3. Sitemaps → submit `https://www.bistouri.app/sitemap.xml`.
 4. URL Inspection → `https://www.bistouri.app/` → Request indexing.
 5. Same in Bing Webmaster Tools (import from Search Console, 1 click). Bing also feeds DuckDuckGo and Ecosia.
